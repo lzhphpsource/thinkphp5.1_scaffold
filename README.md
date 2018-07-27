@@ -31,7 +31,7 @@ yarn build
 使用教程
 ```
 1.首先clone项目
-2.控制台执行yarn初始化
+2.控制台执行composer install 与 yarn初始化
 3.等待yarn依赖安装完成
 4.执行yarn dev 启动调试项目
 ```
