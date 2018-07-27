@@ -1,7 +1,10 @@
 ThinkPHP 5.1 + Vue 自动化构建解决方案
 ===============
 
-### 依赖nodejs webpack,请先安装好Nodejs
+### 依赖nodejs yarn,请先安装好Nodejs与yarn
+
+nodejs: http://nodejs.cn/
+yarn:   https://yarn.bootcss.com/
 
 调试项目,启动调试服务器,自动代理到设置的服务器
 ```
