@@ -1,0 +1,9 @@
+/.idea
+/.vscode
+/vendor
+*.log
+thinkphp
+.env
+
+yarn.lock
+node_modules
