@@ -1,12 +1,46 @@
 <style scoped lang="scss">
-  .title {
-    background: #000;
+  .main {
+    margin: 0 auto;
+    max-width: 500px;
+    background: #fff;
+    border: solid 1px #ddd;
+    padding: 15px;
+  }
+  input {
+    outline: none;
+    width: 100%;
+    border: solid 1px #4288ce;
+    padding: 10px;
+    color: #888;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .login-btn {
+    background: #000088;
+    border: solid 1px #000088;
+    padding: 6px 15px;
+    width: 140px;
+    color: #fff;
+    text-align: center;
   }
 </style>
 
 <template>
   <section>
-    <a href="#" @click="dialog.show = true">测试内容a</a>
+    <div class="main">
+      <h1>登录demo</h1>
+      <p>
+        <input v-model="form.username" placeholder="请输入登录帐号">
+      </p>
+      <p>
+        <input v-model="form.password" placeholder="请输入登录密码">
+      </p>
+
+      <p style="text-align: right">
+        <button class="login-btn" @click="onLogin">登录</button>
+      </p>
+    </div>
   </section>
 </template>
 
@@ -15,9 +49,10 @@
 
   @Component
   export default class Index extends Vue {
-    dialog = {
-      show: false
-    }
+    form = {}
 
+    onLogin () {
+        alert('登录成功')
+    }
   }
 </script>
