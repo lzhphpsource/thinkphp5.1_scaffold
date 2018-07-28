@@ -224,7 +224,7 @@ if (process.env.NODE_ENV === 'prop') {
         filename: utils.assetsPath(process.env.NODE_ENV === 'prop' ? 'css/[name].[chunkhash:7].css' : 'css/[name].css'),
         allChunks: true
     }))
-} else {
+} else if(config.dev.hot) {
     browserSync({
         open: config.dev.open,
         host: config.dev.host,
