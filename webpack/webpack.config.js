@@ -245,6 +245,7 @@ module.exports.plugins.push(
     new CopyWebpackPlugin([
         {
             from: path.resolve(__dirname, 'static'),
+            to: process.env.NODE_ENV === 'dev' ? 'static' : '',
             ignore: ['.*']
         }
     ])

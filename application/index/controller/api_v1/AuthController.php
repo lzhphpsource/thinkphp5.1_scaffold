@@ -39,6 +39,8 @@ class AuthController extends Resful
      */
     public function login()
     {
+        $tok = strtoupper(md5(mt_rand(00, 9999999)));
+        return $this->data(1, ['token'=>$tok]);
 
     }
 

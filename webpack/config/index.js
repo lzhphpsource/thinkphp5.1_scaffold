@@ -19,6 +19,17 @@ module.exports = {
         // 调试服务器端口
         port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
 
+        // 代理到后端
+        proxyTable: {
+            '/api': {
+                target: 'http://spb2.test.kecms.cn/api',
+                ws: true,
+                changeOrigin: true
+                /*pathRewrite: {
+                  '^/api': ''
+                }*/
+            }
+        },
         // https://webpack.js.org/configuration/devtool/#development
         devtool: 'cheap-module-eval-source-map',
 
