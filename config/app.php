@@ -29,7 +29,7 @@ return [
     // 注册的根命名空间
     'root_namespace'         => [],
     // 默认输出类型
-    'default_return_type'    => 'html',
+    'default_return_type'    => 'json',
     // 默认AJAX 数据返回格式,可选json xml ...
     'default_ajax_return'    => 'json',
     // 默认JSONP格式返回的处理方法
@@ -45,9 +45,9 @@ return [
     // 默认语言
     'default_lang'           => 'zh-cn',
     // 应用类库后缀
-    'class_suffix'           => false,
+    'class_suffix'           => true,
     // 控制器类后缀
-    'controller_suffix'      => false,
+    'controller_suffix'      => true,
 
     // +----------------------------------------------------------------------
     // | 模块设置
@@ -89,25 +89,25 @@ return [
     // IP代理获取标识
     'http_agent_ip'          => 'X-REAL-IP',
     // URL伪静态后缀
-    'url_html_suffix'        => 'html',
+    'url_html_suffix'        => '',
     // URL普通方式参数 用于自动生成
-    'url_common_param'       => false,
+    'url_common_param'       => true,
     // URL参数方式 0 按名称成对解析 1 按顺序解析
     'url_param_type'         => 0,
     // 是否开启路由延迟解析
-    'url_lazy_route'         => false,
+    'url_lazy_route'         => true,
     // 是否强制使用路由
     'url_route_must'         => false,
     // 合并路由规则
-    'route_rule_merge'       => false,
+    'route_rule_merge'       => true,
     // 路由是否完全匹配
-    'route_complete_match'   => false,
+    'route_complete_match'   => true,
     // 使用注解路由
-    'route_annotation'       => false,
+    'route_annotation'       => true,
     // 域名根，如thinkphp.cn
     'url_domain_root'        => '',
     // 是否自动转换URL中的控制器和操作名
-    'url_convert'            => true,
+    'url_convert'            => false,
     // 默认的访问控制器层
     'url_controller_layer'   => 'controller',
     // 表单请求类型伪装变量
@@ -139,7 +139,7 @@ return [
     // 错误显示信息,非调试模式有效
     'error_message'          => '页面错误！请稍后再试～',
     // 显示错误信息
-    'show_error_msg'         => false,
+    'show_error_msg'         => true,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
 

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev PLATFORM=web npx webpack --watch --hide-modules --config webpack/webpack.config.js --progress --hide-modules",
+    "dev": "cross-env NODE_ENV=dev PLATFORM=web npx webpack-dev-server --config webpack/webpack.config.js --progress --profile --hide-modules --cache=true",
     "build": "cross-env NODE_ENV=prop PLATFORM=web npx webpack --hide-modules --config webpack/webpack.config.js --progress --bail"
   },
   "devDependencies": {

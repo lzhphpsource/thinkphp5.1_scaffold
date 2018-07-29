@@ -11,26 +11,30 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const UglifyPlugin = require('uglifyjs-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const VueConfig = require('./vue.config.js')
-const browserSync = require('browser-sync')
 
 const assetsSubDirectory = process.env.NODE_ENV === 'prop'
     ? config.build.assetsSubDirectory
     : config.dev.assetsSubDirectory
 
-function getEntry(globPath) {
+function getEntry(globPath, dir) {
     let entries = {},
         basename, tmp, pathname;
+    console.log(dir)
 
     glob.sync(globPath).forEach(function (entry) {
         // console.log(path.parse(entry))
         let ext = path.extname(entry)
         let tmp = path.parse(entry)
-        pathname = tmp.dir.split('/').splice(-1) + '/' + tmp.name; // 正确输出js和html的路径
+        if (dir) {
+            pathname = tmp.dir.split('/').splice(-1)
+        } else {
+            pathname = tmp.dir.split('/').splice(-1) + '/' + tmp.name; // 正确输出js和html的路径
+        }
         entries[pathname] = entry;
     });
     return entries;
 }
-let entrys = getEntry('./webpack/src/pages/*/index.js')
+let entrys = getEntry('./webpack/src/pages/*/index.js', true)
 const ouputFile = process.env.NODE_ENV === 'dev' ? '[name].js' : '[name].[chunkhash:8].js'
 
 console.log(process.env.NODE_ENV)
@@ -39,10 +43,10 @@ module.exports = {
     entry: entrys,
     mode: process.env.NODE_ENV === 'dev' ? 'development' : 'production',
     output: {
-        path: path.join(__dirname, config.build.staticPath),
-        publicPath: (process.env.NODE_ENV === 'dev' ? config.dev.assetsPublicPath : config.build.assetsPublicPath) + assetsSubDirectory + '/',
-        filename: ouputFile,
-        chunkFilename: process.env.NODE_ENV === 'dev' ? 'lib/js/[name].js' : 'lib/js/[name].[chunkhash:8].js'
+        path: path.join(__dirname, process.env.NODE_ENV === 'dev' ? './dist' : config.build.staticPath),
+        publicPath: process.env.NODE_ENV === 'dev' ? config.assetsPublicPath : config.assetsPublicPath + config.assetsSubDirectory + '/',
+        filename: 'js/' + ouputFile,
+        chunkFilename: process.env.NODE_ENV === 'dev' ? 'js/[name].js' : 'js/[name].[chunkhash:8].js'
     },
     externals: {
         'vue': 'Vue',
@@ -53,7 +57,7 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.js',
-            '~': path.join(__dirname, 'src')
+            '~': path.join(__dirname, 'webpack/src')
         }
     },
     module: {
@@ -74,7 +78,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: utils.assetsPath('media/[name].[hash:7].[ext]')
+                    name: 'media/[name].[hash:7].[ext]'
                 }
             },
             {
@@ -83,7 +87,7 @@ module.exports = {
                     loader: 'url-loader',
                     options: {
                         limit: 10000,  //8k一下的转义为base64
-                        name: utils.assetsPath('images/[name].[hash:7].[ext]')
+                        name: 'images/[name].[hash:7].[ext]'
                     }
                 }]
             },
@@ -92,7 +96,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+                    name: 'fonts/[name].[hash:7].[ext]'
                 }
             }
         ].concat(utils.styleLoaders({
@@ -175,14 +179,33 @@ module.exports = {
 
 
 
+// 调试服务器
+if (process.env.NODE_ENV === 'dev') {
+    module.exports.devServer = {
+        host: config.dev.host,
+        port: config.dev.port,
+        contentBase: process.env.NODE_ENV === 'dev' ? './dist' : config.build.templatePath,
+        compress: true,
+        inline: true,
+        clientLogLevel: 'warning',
+        hot: true,
+        proxy: config.dev.proxyTable,
+        quiet: true,
+        overlay: {
+            warnings: true,
+            errors: true
+        }
+    }
+}
+
 let pages = getEntry('./webpack/src/pages/**/index.html');
 
 for (let pathname in pages) {
     // 配置生成的html文件，定义路径等
     let conf = {
-        filename: path.join(__dirname, config.build.templatePath, pathname + '.html'),
+        filename: process.env.NODE_ENV === 'dev' ? pathname + '.html' : path.join(__dirname, config.build.templatePath, pathname + '.html'),
         template: pages[pathname], // 模板路径
-        chunks: ['common', pathname], // 每个html引用的js模块
+        chunks: ['common', pathname.split('/')[0]], // 每个html引用的js模块
         inject: true              // js插入位置
     };
     // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
@@ -215,40 +238,28 @@ if (process.env.NODE_ENV === 'prop') {
     }))
     */
 } else {
-
     module.exports.plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
+module.exports.plugins.push(
+    new CopyWebpackPlugin([
+        {
+            from: path.resolve(__dirname, 'static'),
+            ignore: ['.*']
+        }
+    ])
+)
+
 if (process.env.NODE_ENV === 'prop') {
     module.exports.plugins.push(new ExtractTextPlugin({
-        filename: utils.assetsPath(process.env.NODE_ENV === 'prop' ? 'css/[name].[chunkhash:7].css' : 'css/[name].css'),
+        filename: process.env.NODE_ENV === 'prop' ? 'css/[name].[chunkhash:7].css' : 'css/[name].css',
         allChunks: true
     }))
-} else if(config.dev.hot) {
-    browserSync({
-        open: config.dev.open,
-        host: config.dev.host,
-        port: config.dev.port,
-        proxy: config.dev.proxy,
-        browser: config.dev.browser,
-        files: [
-            "./webpack/src/**/*.js",
-            "./webpack/src/**/*.vue",
-            "./webpack/src/**/*.css",
-            "./webpack/src/**/*.scss",
-            "./webpack/src/**/*.json",
-            "./application/**/*.php",
-            "./route/**/*.php",
-            "./config/**/*.php",
-            "./extend/**/*.php"
-        ]
-    })
-    /*
+} else {
     module.exports.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
             messages: [`Your application is running here: http://${module.exports.devServer.host}:${module.exports.devServer.port}`],
         },
         onErrors: utils.createNotifierCallback()
     }))
-    */
 }

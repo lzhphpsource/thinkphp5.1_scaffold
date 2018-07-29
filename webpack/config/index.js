@@ -5,23 +5,15 @@
 const path = require('path')
 
 module.exports = {
+    // 静态文件根目录
+    assetsPublicPath: '/',
+    // 静态文件目录
+    assetsSubDirectory: 'static',
 
     dev: {
-        // 是否开启热重载
-        hot: true,
-        // 模板编译保存目录
-        templatePath: '../template',
-        // 静态文件编译保存目录
-        staticPath: '../public/static',
-        assetsSubDirectory: 'static',
-        assetsPublicPath: '/',
 
-        // 代理服务器
-        proxy: 'test.cn',
         // 是否自动打开浏览器
         open: false,
-        // 浏览器类型 - 填写浏览器路径
-        browser: "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
         // 调试服务器主机名
         host: 'localhost', // can be overwritten by process.env.HOST
         // 调试服务器端口
@@ -40,7 +32,7 @@ module.exports = {
 
     build: {
         // 模板编译保存目录
-        templatePath: '../template',
+        templatePath: '../public',
         // 静态文件编译保存目录
         staticPath: '../public/static',
 

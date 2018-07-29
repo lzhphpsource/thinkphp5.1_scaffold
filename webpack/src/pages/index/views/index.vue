@@ -6,6 +6,20 @@
     border: solid 1px #ddd;
     padding: 15px;
   }
+  .bg {
+    background: url('../../../assets/images/1.png') no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 200px;
+    height: 300px;
+  }
+  .bg2 {
+    background: url('/static/images/2.png') no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 200px;
+    height: 300px;
+  }
   input {
     outline: none;
     width: 100%;
@@ -28,6 +42,8 @@
 
 <template>
   <section>
+    <div class="bg"></div>
+    <div class="bg2"></div>
     <div class="main">
       <h1>登录demo</h1>
       <p>

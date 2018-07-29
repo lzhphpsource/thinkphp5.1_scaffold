@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
 
 exports.assetsPath = function (_path) {
-    return path.posix.join('lib', _path)
+    return path.posix.join('css', _path)
 }
 
 exports.cssLoaders = function (options) {

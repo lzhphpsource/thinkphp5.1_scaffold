@@ -12,7 +12,9 @@ const route = new KeRouter('index')
 
 route.reg(['index', '/'], 'index').meta({ title: 'title' })
 
-route.reg('/users', 'user/index').meta({ title: '用户' })
+// route.reg('/users', 'user/index').meta({ title: '用户' })
+
+route.reg('/login', 'login').meta({ title: '登录' })
 
 
 const r = new VueRouter({
