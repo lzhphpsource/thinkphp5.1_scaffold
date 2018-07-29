@@ -44,7 +44,7 @@ yarn build
 由于webpack/config/index.js 23行默认配置了后端接口,所以可以直接使用调试服务器IP:  localhost:8080/api 来访问到后端
 ```
 
-关于KeRouter路由,本人小写的一个方便注册vue-router的class
+关于KeRouter路由,本人小写的一个方便注册vue-router的class,类源码在/webpack/src/utils/router.js
 ```
 // 顶级路由
 const route = new KeRouter('index')
