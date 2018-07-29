@@ -44,4 +44,29 @@ yarn build
 由于webpack/config/index.js 23行默认配置了后端接口,所以可以直接使用调试服务器IP:  localhost:8080/api 来访问到后端
 ```
 
+关于KeRouter路由,本人小写的一个方便注册vue-router的class
+```
+// 顶级路由
+const route = new KeRouter('index')
+
+route.reg(['index', '/'], 'index').meta({ title: 'title' })
+
+// route.reg('/users', 'user/index').meta({ title: '用户' })
+
+route.reg('/login', 'login').meta({ title: '登录' })
+
+// 调用route.data即可获得格式化好的路由表
+
+// 嵌套怎么写?
+route.reg('/iframe', 'iframe').children(route => {
+    route.reg('/iframe/main', 'iframe/main')
+    // 支持无限.children嵌套哦
+})
+
+// 关于命名路由
+route.reg(['name', '/'], 'index')
+// 此处的name则是命名名
+
+```
+
 _TP5交流群 by 316497602_
