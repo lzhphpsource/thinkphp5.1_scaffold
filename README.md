@@ -23,7 +23,8 @@ yarn build
   config  构建配置
   src   源码仓库,即你编写模板代码的地方
     pages  页面
-      ***  模块,这个模块名会成为打包后的 ***/index.html
+      ***  模块,这个模块名会成为打包后的 public/***/index.html
+  static 静态文件目录,此目录下的文件都会原样复制到资源打包目录,使用绝对路径引入资源/static
 
 ```
 
@@ -38,5 +39,9 @@ yarn build
 
 默认的配置已经可以用了,如需定义请到:webpack/config/index.js修改
 
+关于如何访问TP接口问题
+```
+由于webpack/config/index.js 23行默认配置了后端接口,所以可以直接使用调试服务器IP:  localhost:8080/api 来访问到后端
+```
 
 _TP5交流群 by 316497602_

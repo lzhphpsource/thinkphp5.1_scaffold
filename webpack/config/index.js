@@ -22,12 +22,14 @@ module.exports = {
         // 代理到后端
         proxyTable: {
             '/api': {
-                target: 'http://spb2.test.kecms.cn/api',
+                target: 'http://localhost/api',
                 ws: true,
                 changeOrigin: true
-                /*pathRewrite: {
+                /*
+                pathRewrite: {
                   '^/api': ''
-                }*/
+                }
+                */
             }
         },
         // https://webpack.js.org/configuration/devtool/#development
