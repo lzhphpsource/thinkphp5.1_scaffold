@@ -47,7 +47,7 @@ return [
     // 应用类库后缀
     'class_suffix'           => true,
     // 控制器类后缀
-    'controller_suffix'      => true,
+    'controller_suffix'      => false,
 
     // +----------------------------------------------------------------------
     // | 模块设置
@@ -91,19 +91,19 @@ return [
     // URL伪静态后缀
     'url_html_suffix'        => '',
     // URL普通方式参数 用于自动生成
-    'url_common_param'       => true,
+    'url_common_param'       => false,
     // URL参数方式 0 按名称成对解析 1 按顺序解析
     'url_param_type'         => 0,
     // 是否开启路由延迟解析
-    'url_lazy_route'         => true,
+    'url_lazy_route'         => false,
     // 是否强制使用路由
     'url_route_must'         => false,
     // 合并路由规则
-    'route_rule_merge'       => true,
+    'route_rule_merge'       => false,
     // 路由是否完全匹配
-    'route_complete_match'   => true,
+    'route_complete_match'   => false,
     // 使用注解路由
-    'route_annotation'       => true,
+    'route_annotation'       => false,
     // 域名根，如thinkphp.cn
     'url_domain_root'        => '',
     // 是否自动转换URL中的控制器和操作名

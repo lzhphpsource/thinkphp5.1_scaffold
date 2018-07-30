@@ -1,74 +1,43 @@
 <style scoped lang="scss">
-  .main {
-    margin: 0 auto;
-    max-width: 500px;
-    background: #fff;
-    border: solid 1px #ddd;
-    padding: 15px;
-  }
-  .bg {
-    background: url('../../../assets/images/1.png') no-repeat;
-    -webkit-background-size: cover;
-    background-size: cover;
-    width: 200px;
-    height: 300px;
-  }
-  .bg2 {
-    background: url('/static/images/2.png') no-repeat;
-    -webkit-background-size: cover;
-    background-size: cover;
-    width: 200px;
-    height: 300px;
-  }
-  input {
-    outline: none;
-    width: 100%;
-    border: solid 1px #4288ce;
-    padding: 10px;
-    color: #888;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  .login-btn {
-    background: #000088;
-    border: solid 1px #000088;
-    padding: 6px 15px;
-    width: 140px;
-    color: #fff;
-    text-align: center;
-  }
 </style>
 
 <template>
-  <section>
-    <div class="bg"></div>
-    <div class="bg2"></div>
-    <div class="main">
-      <h1>登录demo</h1>
-      <p>
-        <input v-model="form.username" placeholder="请输入登录帐号">
-      </p>
-      <p>
-        <input v-model="form.password" placeholder="请输入登录密码">
-      </p>
-
-      <p style="text-align: right">
-        <button class="login-btn" @click="onLogin">登录</button>
-      </p>
-    </div>
-  </section>
+    <section>
+        <a href="javascript:;" @click="onClearRows">清空</a>
+        <a href="javascript:;" @click="onLoad">重新加载</a>
+        <router-link tag="a" :to="{ name: 'login' }">查看表单栗子</router-link>
+        <div v-if="rows.length === 0">
+            正在加载中
+        </div>
+        <ul v-else>
+            <li v-for="item in rows" :key="item.id">{{ item.title }}</li>
+        </ul>
+    </section>
 </template>
 
 <script>
-  import Component from 'vue-class-component'
+    import { Vue, Component } from 'vue-property-decorator'
 
-  @Component
-  export default class Index extends Vue {
-    form = {}
+    @Component
+    export default class Index extends Vue {
+        rows = []
 
-    onLogin () {
-        alert('登录成功')
+        mounted () {
+            this.rows = []
+            this.onLoad()
+        }
+
+        onLoad () {
+            this.$http.get('news')
+                .then(result => {
+                    console.log(result)
+                    this.rows = result.data.data
+                })
+        }
+
+        onClearRows () {
+            this.rows = []
+            alert('数据清除完成')
+        }
     }
-  }
 </script>

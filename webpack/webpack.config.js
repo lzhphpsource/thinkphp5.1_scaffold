@@ -46,12 +46,9 @@ module.exports = {
         path: path.join(__dirname, process.env.NODE_ENV === 'dev' ? './dist' : config.build.staticPath),
         publicPath: process.env.NODE_ENV === 'dev' ? config.assetsPublicPath : config.assetsPublicPath + config.assetsSubDirectory + '/',
         filename: 'js/' + ouputFile,
-        chunkFilename: process.env.NODE_ENV === 'dev' ? 'js/[name].js' : 'js/[name].[chunkhash:8].js'
+        chunkFilename: process.env.NODE_ENV === 'dev' ? 'js/[name].[chunkhash:8].js' : 'js/[name].[chunkhash:8].js'
     },
     externals: {
-        'vue': 'Vue',
-        'element-ui': 'ELEMENT',
-        'axios': 'axios'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -185,6 +182,9 @@ if (process.env.NODE_ENV === 'dev') {
         host: config.dev.host,
         port: config.dev.port,
         contentBase: process.env.NODE_ENV === 'dev' ? './dist' : config.build.templatePath,
+        historyApiFallback: {
+            rewrites: [ { from: /^\/(\w+)/, to: '/$1/index.html' } ]
+        },
         compress: true,
         inline: true,
         clientLogLevel: 'warning',
@@ -229,14 +229,6 @@ if (process.env.NODE_ENV === 'prop') {
         }
     }
     deleteFolderRecursive(path.join(__dirname, config.build.staticPath))
-    /*
-    console.log(config.build.assetsRoot)
-    module.exports.plugins.push(new CleanWebpackPlugin(['**.*'], {
-      root: path.resolve(__dirname, config.build.assetsRoot),
-      verbose: true,
-      dry: true
-    }))
-    */
 } else {
     module.exports.plugins.push(new webpack.HotModuleReplacementPlugin())
 }

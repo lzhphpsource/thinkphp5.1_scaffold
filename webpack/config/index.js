@@ -22,7 +22,7 @@ module.exports = {
         // 代理到后端
         proxyTable: {
             '/api': {
-                target: 'http://localhost/api',
+                target: 'http://localhost/',
                 ws: true,
                 changeOrigin: true
                 /*

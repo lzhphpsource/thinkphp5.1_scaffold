@@ -5,5 +5,5 @@
 thinkphp
 .env
 
-yarn.lock
+*.lock
 node_modules

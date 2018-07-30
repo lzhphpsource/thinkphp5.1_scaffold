@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import KeRouter from '../../utils/router'
+import KeRouter from '../../utils/vue-ke-router'
+import Index from './routes/index'
 
 Vue.use(VueRouter)
 
@@ -10,15 +11,16 @@ Vue.use(VueRouter)
 // 顶级路由
 const route = new KeRouter('index')
 
-route.reg(['index', '/'], 'index').meta({ title: 'title' })
-
-// route.reg('/users', 'user/index').meta({ title: '用户' })
-
-route.reg('/login', 'login').meta({ title: '登录' })
+Index(route)
 
 
 const r = new VueRouter({
-  routes: route.data
+    // 如需要使用history模式请去掉下面前面的//
+    mode: 'history',
+
+    // history模式开启下必须设置 /模块名/
+    base: '/index/',
+    routes: route.data
 })
 
 
