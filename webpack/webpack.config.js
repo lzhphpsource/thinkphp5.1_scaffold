@@ -183,7 +183,7 @@ if (process.env.NODE_ENV === 'dev') {
         port: config.dev.port,
         contentBase: process.env.NODE_ENV === 'dev' ? './dist' : config.build.templatePath,
         historyApiFallback: {
-            rewrites: [ { from: /^\/(\w+)/, to: '/$1/index.html' } ]
+            rewrites: [ { from: /^\/$/, to: '/index/index.html' }, { from: /^\/(\w+)/, to: '/$1/index.html' } ]
         },
         compress: true,
         inline: true,
