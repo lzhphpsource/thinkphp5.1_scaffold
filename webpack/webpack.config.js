@@ -34,10 +34,9 @@ function getEntry(globPath, dir) {
     });
     return entries;
 }
-let entrys = getEntry('./webpack/src/pages/*/index.js', true)
+let entrys = getEntry('./application/*/index.js', true)
 const ouputFile = process.env.NODE_ENV === 'dev' ? '[name].js' : '[name].[chunkhash:8].js'
 
-console.log(process.env.NODE_ENV)
 module.exports = {
     devtool: process.env.NODE_ENV === 'dev' ? 'cheap-module-eval-source-map' : '#source-map',
     entry: entrys,
@@ -54,7 +53,7 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.js',
-            '~': path.join(__dirname, 'webpack/src')
+            '~': path.join(__dirname, 'src')
         }
     },
     module: {
@@ -62,7 +61,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 use: ['babel-loader'],
-                include: path.join(__dirname, './src'),
+                include: [path.join(__dirname, './src'), path.join(__dirname, '../application')],
                 exclude: /node_modules/
             },
             {
@@ -198,7 +197,7 @@ if (process.env.NODE_ENV === 'dev') {
     }
 }
 
-let pages = getEntry('./webpack/src/pages/**/index.html');
+let pages = getEntry('./application/*/index.html');
 
 for (let pathname in pages) {
     // 配置生成的html文件，定义路径等
@@ -236,7 +235,7 @@ if (process.env.NODE_ENV === 'prop') {
 module.exports.plugins.push(
     new CopyWebpackPlugin([
         {
-            from: path.resolve(__dirname, 'static'),
+            from: path.resolve(__dirname, '../resources'),
             to: process.env.NODE_ENV === 'dev' ? 'static' : '',
             ignore: ['.*']
         }

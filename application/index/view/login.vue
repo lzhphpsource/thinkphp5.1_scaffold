@@ -24,9 +24,6 @@
         color: #fff;
         text-align: center;
     }
-    .bg {
-        background: #1FAFFF;
-    }
 </style>
 
 <template>
