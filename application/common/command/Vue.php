@@ -33,6 +33,9 @@ class Vue extends Command
         if (!is_dir($path)) {
             mkdir($path, 0755, true);
         }
+        if (!is_dir($path . '/controller')) {
+            mkdir($path . '/controller', 0755, true);
+        }
 
         // index.html
         $content = <<<html
