@@ -1,0 +1,97 @@
+@charset "utf-8";
+.conversion{
+    width:100%;
+    height:3rem;
+    background-color:#FF2244;
+    color:#fff;
+    font-size:0.4rem;
+    padding:0.5rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+.conversion>div{
+    line-height:1rem;
+}
+body{ background-color:#fff;}
+
+#formData{
+    width:7rem;
+    margin:2rem auto 0;
+    font-size:0.4rem;
+    text-align:center;
+}
+#formData:before{
+    content:"";
+    display:table;
+    clear:both;
+    height:0;
+    visibility:hidden;
+}
+.formData div input{
+    border:0;
+    outline:0;
+    margin-top:0.4rem;
+    width:4.3rem;
+    background-color:#fff;
+    color:#000;
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:#ddd;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#ddd;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:#ddd;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:#ddd;
+}
+
+#btnSubmit{
+    width:100%;
+    height:1.1rem;
+    line-height:1.1rem;
+    background-color:#FF2244;
+    color:#fff;
+    border-radius:5px;
+    text-align:center;
+    font-size:0.35rem;
+    margin:2.4rem auto;
+    outline:0;
+    border:0;
+}
+
+/*下来列表*/
+select{
+    width:4rem;
+    height:1rem;
+    border-radius: 5px;
+    outline:0;
+    text-align: center;
+}
+select option{
+    text-align:center;
+}
+
+div.msg{
+    width:8rem;
+    height:4rem;
+    line-height:4rem;
+    text-align:center;
+    position:fixed;
+    left:50%;
+    top:20%;
+    margin-left:-4rem;
+    background-color:#fff;
+    color:#FF2244;
+    border:2px solid #FF2244;
+    border-radius:0.2rem;
+    z-index:100001;
+    font-size:14px;
+    display: none;
+}
+.tip{
+    margin:0.6rem 0 0;
+    font-size:0.35rem;
+}

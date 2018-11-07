@@ -23,4 +23,10 @@ return [
     ],
 
     // 其他更多的模块定义
+    'admin'=>[
+        '__dir__'   =>  ['builder','controller','model','validate','view'],
+        'controller'=>  ['Index'],
+        'model'     =>   ['Index'],
+        'view'      =>  ['index/index'],
+    ],
 ];

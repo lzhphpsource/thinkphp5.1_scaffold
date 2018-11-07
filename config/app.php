@@ -21,7 +21,7 @@ return [
     // 应用调试模式
     'app_debug'              => true,
     // 应用Trace
-    'app_trace'              => false,
+    'app_trace'              => true,
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
@@ -29,7 +29,7 @@ return [
     // 注册的根命名空间
     'root_namespace'         => [],
     // 默认输出类型
-    'default_return_type'    => 'json',
+    'default_return_type'    => 'html',
     // 默认AJAX 数据返回格式,可选json xml ...
     'default_ajax_return'    => 'json',
     // 默认JSONP格式返回的处理方法
@@ -45,10 +45,9 @@ return [
     // 默认语言
     'default_lang'           => 'zh-cn',
     // 应用类库后缀
-    'class_suffix'           => true,
+    'class_suffix'           => false,
     // 控制器类后缀
     'controller_suffix'      => false,
-
     // +----------------------------------------------------------------------
     // | 模块设置
     // +----------------------------------------------------------------------
@@ -91,7 +90,7 @@ return [
     // URL伪静态后缀
     'url_html_suffix'        => '',
     // URL普通方式参数 用于自动生成
-    'url_common_param'       => false,
+    'url_common_param'       => true,
     // URL参数方式 0 按名称成对解析 1 按顺序解析
     'url_param_type'         => 0,
     // 是否开启路由延迟解析
@@ -107,7 +106,7 @@ return [
     // 域名根，如thinkphp.cn
     'url_domain_root'        => '',
     // 是否自动转换URL中的控制器和操作名
-    'url_convert'            => false,
+    'url_convert'            => true,
     // 默认的访问控制器层
     'url_controller_layer'   => 'controller',
     // 表单请求类型伪装变量
@@ -142,5 +141,22 @@ return [
     'show_error_msg'         => true,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
-
+    'picture_upload' => array(
+        // 允许上传的文件MiMe类型
+        'mimes'    => [],
+        // 上传的文件大小限制
+        'maxSize'  => 2*1024*1024,
+        // 允许上传的文件后缀
+        'exts'     => 'gif,jpg,jpeg,bmp,png',
+        // 子目录创建方式，[0]-函数名，[1]-参数，多个参数使用数组
+        'subName'  => ['date', 'Y-m-d'],
+        //保存根路径
+        'rootPath' => './public/uploads/picture',
+        // 保存路径
+        'savePath' => '',
+        // 上传文件命名规则，date,md5,sha1,自定义规则
+        'saveName' => 'uniqid',
+        // 文件上传驱动e,
+        'driver'   => 'local',
+    ),
 ];

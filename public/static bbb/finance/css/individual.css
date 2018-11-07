@@ -1,0 +1,138 @@
+@charset "utf-8";
+body{
+    font-size:14px;
+}
+.page_group{
+    width:100%;
+    height:100%;
+    overflow: scroll;
+    background-color:#F3F6F5;
+}
+a{
+    color:#000;
+}
+/*header*/
+.page_group .header{
+    height:1.5rem;
+    font-size:0.45rem;
+    line-height:1.5rem;
+}
+.page_group .header span.glyphicon{
+    float:left;
+    height:100%;
+    padding:0.5rem;
+}
+.page_group .header>div{
+    position: absolute;
+    width:100%;
+    text-align: center;
+    top:0;
+    left:0;
+}
+/*头像登陆*/
+.head_img{
+    width:100%;
+    background-color:#FF2244;
+    padding-bottom:0.5rem;
+}
+.head_img:before{
+    content:"";
+    display:table;
+    clear:both;
+    height:0;
+    visibility:hidden;
+}
+.head_img img{
+    display: block;
+    width:1.5rem;
+    height:1.5rem;
+    border-radius:50%;
+    margin:0.5rem auto 0.2rem;
+}
+.head_img .grade{
+    text-align:center;
+    font-size:0.35rem;
+    color:#fff;
+}
+.head_img a,.user,.max{
+    font-size:0.35rem;
+    color:#fff;
+    text-align:center;
+
+}
+/*积分*/
+.integral .content{
+    margin-left:0.2rem;
+}
+.integral ul{
+    width:100%;
+    margin:0.4rem auto;
+    background-color:#fff;
+    overflow: hidden;
+}
+.integral ul li{
+    width:50%;
+    float:left;
+    padding:0.2rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    /*border:1px solid #ddd;*/
+}
+.integral ul li img{
+    width:1.5rem;
+    height:1.5rem;
+}
+.integral ul li .content .b .btn{
+    background-color:#F3F6F5;
+}
+.integral span.btn{
+    padding:2px 12px;
+}
+.integral .content .b .num{
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width:100px;
+}
+
+/*暂时没有开通弹框*/
+.group_list.tip{
+    padding:0 0.5rem 0.2rem;
+    text-align: center;
+    display: none;
+}
+.group_list.tip .item{
+    border:1px solid #ccc;
+    border-radius: 15px;
+    text-align:center;
+}
+/*列表*/
+.group_list{
+    font-size:0.35rem;
+}
+.group_list .item{
+    display: flex;
+    justify-content: space-between;
+    padding:0.3rem 0.5rem;
+    background-color:#fff;
+    margin-bottom:0.1rem;
+}
+.group_list .item .left span{
+    margin-right:0.2rem
+}
+/*退出登录*/
+.group_list.btn{
+    display: flex;
+    justify-content: center;
+}
+.group_list.btn .btn-danger{
+    width:90%;
+    margin:0 auto;
+}
+.cover .glyphicon-remove{
+    position: absolute;
+    top:0.5rem;
+    right:0.5rem;
+}

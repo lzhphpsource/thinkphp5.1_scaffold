@@ -18,7 +18,8 @@ return [
     'type'         => 'Think',
     // 默认模板渲染规则 1 解析为小写+下划线 2 全部转换小写 3 保持操作方法
     'auto_rule'    => 3,
-    'view_base'    => App::getRootPath() . 'template' . DIRECTORY_SEPARATOR,
+    //'view_base'    => App::getRootPath() . 'template' . DIRECTORY_SEPARATOR,
+    'view_base'    => '',
     'tpl_cache'    => false,
     // 模板路径
     'view_path'    => '',
@@ -36,6 +37,17 @@ return [
     'taglib_end'   => '}',
     // 模板替换
     'tpl_replace_string'  =>  [
-        '__STATIC__'=>'/static'
-    ]
+        '__ROOT__'     => '/',
+        '__BASE__'     => BASE_PATH.'/public/static/base',
+        '__PUBLIC__'   => BASE_PATH.'/public',
+        '__STATIC__'   => BASE_PATH.'/public/static',
+        '__LIBS__'     => BASE_PATH.'/public/static/libs',
+        '__ADMINCSS__' => BASE_PATH.'/public/static/admin/css',
+        '__ADMINJS__'  => BASE_PATH.'/public/static/admin/js',
+        '__ADMINIMG__' => BASE_PATH.'/public/static/admin/images',
+        '__INDEXCSS__' => BASE_PATH.'/public/static/index/css',
+        '__INDEXJS__'  => BASE_PATH.'/public/static/index/js',
+        '__INDEXIMG__' => BASE_PATH.'/public/static/index/images',
+    ],
+    'default_filter' => ''
 ];

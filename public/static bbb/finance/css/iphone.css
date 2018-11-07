@@ -1,0 +1,176 @@
+@charset "utf-8";
+.hidden{display:none;}
+body{ background-color:#fff;}
+
+#formData{
+    width:6.4rem;
+    margin:2rem auto;
+    font-size:0.4rem;
+}
+#formData div input{
+    border:0;
+    outline:0;
+    margin-top:0.4rem;
+    width:4.3rem;
+    background-color:#fff;
+    color:#000;
+}
+.iphone,.id_code{
+    height:1.07rem;
+    box-sizing: border-box;
+    border-bottom:1px solid #ccc;
+    /*padding-top:0.4rem;*/
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:#ddd;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#ddd;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:#ddd;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:#ddd;
+}
+/* input获取焦点 placeholder消失-开始 */
+/* WebKit browsers */
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+/* Mozilla Firefox 4 to 18 */
+input:focus:-moz-placeholder {
+    color: transparent;
+}
+input:focus{
+    color:#fff;
+}
+#formData .id_code input{
+    float:left;
+}
+.id_code span{
+    float:right;
+    width:1.9rem;
+    height:0.7rem;
+    line-height:0.7rem;
+    background-color:#F99400;
+    color:#fff;
+    border-radius:5px;
+    text-align:center;
+    position: relative;
+    top:0.15rem;
+    font-size:0.3rem;
+}
+.protocol{
+    padding-top:0.27rem;
+}
+/*注册协议*/
+#formData .protocol a{
+    display:inline ;
+}
+/*自定义复选框样式*/
+label.nc::before {
+    content: "\a0";  /*不换行空格*/;
+    display: inline-block;
+    width: 0.25rem;
+    height: 0.25rem;
+    border:1px solid #ccc;
+    border-radius:3px;
+    background-color: #fff;
+    margin:0 0.13rem;
+    line-height:0.28rem;  /*行高不加单位，子元素将继承数字乘以自身字体尺寸而非父元素行高*/
+}
+label.c::before {
+    content: "\2713";
+    display: inline-block;
+    width: 0.25rem;
+    height: 0.25rem;
+    border:1px solid #ccc;
+    border-radius:3px;
+    background-color: #fff;
+    margin:0 0.13rem;
+    line-height:0.28rem;  /*行高不加单位，子元素将继承数字乘以自身字体尺寸而非父元素行高*/
+}
+/*复选框默认样式隐藏*/
+input[type="checkbox"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+#btnSubmit{
+    width:100%;
+    height:1.1rem;
+    line-height:1.1rem;
+    background-color:#FF2244;
+    color:#fff;
+    border-radius:5px;
+    text-align:center;
+    font-size:0.35rem;
+    margin:2.4rem auto;
+    outline:0;
+    border:0;
+}
+/*错误提示语*/
+#formData div.msg{
+    font-size:0.2rem;
+    color:red;
+}
+
+/*注册协议弹出框*/
+.cover{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0, 0, 0, 0.4) none repeat scroll 0 0;
+    display: none;
+}
+.cover .protocol_text{
+    position:fixed;
+    left:50%;
+    right:50%;
+    width:8.4rem;
+    height:8rem;
+    margin-left:-4.2rem;
+    margin-top:4rem;
+    background:#fff;
+    border-radius:0.3rem;
+    overflow: scroll;
+    padding:0.5rem;
+    box-sizing: border-box;
+    text-align:center;
+}
+.cover .protocol_text .p_title{
+    font-size:0.45rem;
+    margin-bottom:0.5rem;
+}
+.cover .protocol_text .p_content{
+    text-align: justify;
+    font-size:0.35rem;
+}
+.cover .protocol_text .button{
+    display: block;
+    width:100%;
+    padding:0.2rem;
+    box-sizing: border-box;
+    background-color:#A40001;
+    color:#fff;
+    margin:0.7rem auto;
+    font-size:0.4rem;
+}
+#diy{
+    width:8.4rem;
+    height:4.4rem;
+    background-color:#fff;
+    box-sizing: border-box;
+    border-top:0.15rem solid #A40001;
+    border-radius:0.3rem;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin-left:-4.2rem;
+    margin-top:-2.2rem;
+    text-align:center;
+    line-height:4.4rem;
+    font-size:0.4rem;
+}

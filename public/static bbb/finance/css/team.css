@@ -1,0 +1,56 @@
+@charset "utf-8";
+#team_tab li{
+    width:33.33%;
+    text-align:center;
+}
+#team_tab li.active a{
+    background-color:#F2DEDE;
+
+}
+#team_tab li a{
+    padding:0.5rem;
+    color:#000;
+    font-size:0.35rem;
+}
+#myTabContent .count{
+    padding:0.5rem;
+    background-color:#ddd;
+    font-size:0.35rem;
+}
+.l-list-group{
+    font-size:0.35rem;
+}
+.l-list-group .l-list-item{
+    border-bottom:1px solid #ddd;
+}
+.l-list-group .t,.a{
+    display: flex;
+    justify-content: space-between;
+}
+.l-list-group span{
+    line-height:0.8rem;
+}
+
+/*团队收益*/
+#team2 .c2{
+    display: flex;
+    justify-content: space-between;
+    margin:0;
+}
+#team .l-list-item .more{
+    display: flex;
+    align-items: center;
+}
+#team .l-list-item{
+    display: flex;
+    justify-content: flex-start;
+}
+#team .l-list-item>ul{
+    flex-grow: 1;
+    padding:0 0.2rem;
+}
+#team .l-list-item>ul>li{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
