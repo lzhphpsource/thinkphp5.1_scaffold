@@ -11,7 +11,7 @@
  Target Server Version : 50553
  File Encoding         : 65001
 
- Date: 07/11/2018 17:02:51
+ Date: 08/11/2018 17:05:57
 */
 
 SET NAMES utf8mb4;
@@ -51,12 +51,6 @@ CREATE TABLE `hd_auth_group_access`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
--- Records of hd_auth_group_access
--- ----------------------------
-INSERT INTO `hd_auth_group_access` VALUES (1251, 32);
-INSERT INTO `hd_auth_group_access` VALUES (1297, 31);
-
--- ----------------------------
 -- Table structure for hd_auth_rule
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_auth_rule`;
@@ -82,42 +76,42 @@ CREATE TABLE `hd_auth_rule`  (
 -- Records of hd_auth_rule
 -- ----------------------------
 INSERT INTO `hd_auth_rule` VALUES (112, '/Admin', '后台', 1, '', '', 1, '', 0, 0, 1, 1510821470, 1510821470, 1);
-INSERT INTO `hd_auth_rule` VALUES (116, '/Admin/Index', '首页', 1, '', '', 1, '', 1, 112, 2, 1510821685, 1510821685, 1);
-INSERT INTO `hd_auth_rule` VALUES (117, '/Admin/Index/index', '后台首页', 1, '', '', 1, '', 0, 116, 3, 1510821714, 1510821714, 1);
-INSERT INTO `hd_auth_rule` VALUES (118, '/Admin/Index/home', '欢迎页', 1, '', '', 1, '', 0, 117, 4, 1510821738, 1510821738, 1);
-INSERT INTO `hd_auth_rule` VALUES (119, '/Admin/System', '系统', 1, '', '', 1, '', 2, 112, 2, 1510821858, 1510821858, 1);
-INSERT INTO `hd_auth_rule` VALUES (120, '/Admin/System/index', '系统配置', 1, '', '', 1, '', 0, 119, 3, 1519893466, 1510821899, 1);
-INSERT INTO `hd_auth_rule` VALUES (121, '/Admin/System/setconfig', '网站设置', 1, '', '', 1, '', 1, 120, 4, 1511230393, 1510821953, 1);
-INSERT INTO `hd_auth_rule` VALUES (122, '/Admin/System/configlist', '配置列表', 1, '', '', 1, '', 3, 120, 4, 1511230425, 1510822002, 1);
-INSERT INTO `hd_auth_rule` VALUES (128, '/Admin/Member', '用户', 1, '', '', 1, '', 3, 112, 2, 1510903419, 1510903374, 1);
-INSERT INTO `hd_auth_rule` VALUES (129, '/Admin/Member/index', '会员管理', 1, '', '', 1, '', 0, 128, 3, 1510903806, 1510903806, 1);
-INSERT INTO `hd_auth_rule` VALUES (130, '/Admin/Member/userList', '会员列表', 1, '', '', 1, '', 1, 129, 4, 1527299741, 1510903840, 1);
-INSERT INTO `hd_auth_rule` VALUES (155, '/Admin/Access', '权限', 1, '', '', 1, '', 99, 112, 2, 1538100786, 1510905487, 1);
-INSERT INTO `hd_auth_rule` VALUES (156, '/Admin/Access/index', '权限管理', 1, '', '', 1, '', 0, 155, 3, 1510905515, 1510905515, 1);
-INSERT INTO `hd_auth_rule` VALUES (157, '/Admin/Access/authlist', '管理列表', 1, '', '', 1, '', 1, 156, 4, 1511254157, 1510905538, 1);
-INSERT INTO `hd_auth_rule` VALUES (158, '/Admin/Access/rolelist', '角色管理', 1, '', '', 1, '', 4, 156, 4, 1519893513, 1510905567, 1);
-INSERT INTO `hd_auth_rule` VALUES (159, '/Admin/Access/nodelist', '节点列表', 1, '', '', 1, '', 8, 156, 4, 1511254459, 1510905590, 1);
-INSERT INTO `hd_auth_rule` VALUES (161, '/Admin/System/saveallconfig', '提交设置', 1, '', '', 1, '', 2, 120, 4, 1511231152, 1511230376, 0);
-INSERT INTO `hd_auth_rule` VALUES (162, '/Admin/System/addconfig', '新增配置', 1, '', '', 1, '', 4, 120, 4, 1511231142, 1511230491, 0);
-INSERT INTO `hd_auth_rule` VALUES (163, '/Admin/System/editconfig', '修改配置', 1, '', '', 1, '', 5, 120, 4, 1511231136, 1511230545, 0);
-INSERT INTO `hd_auth_rule` VALUES (164, '/Admin/System/delconfig', '删除配置', 1, '', '', 1, '', 6, 120, 4, 1511231126, 1511230582, 0);
-INSERT INTO `hd_auth_rule` VALUES (173, '/Admin/Member/useradd', '新增用户', 1, '', '', 1, '', 2, 129, 4, 1535531275, 1511245710, 0);
-INSERT INTO `hd_auth_rule` VALUES (174, '/Admin/Member/useredit', '编辑用户', 1, '', '', 1, '', 3, 129, 4, 1535531312, 1511245754, 0);
-INSERT INTO `hd_auth_rule` VALUES (175, '/Admin/Member/groupauth', '授权用户', 1, '', '', 1, '', 4, 129, 4, 1515375704, 1511245818, 0);
-INSERT INTO `hd_auth_rule` VALUES (176, '/Admin/Member/deluser', '删除用户', 1, '', '', 1, '', 6, 129, 4, 1512525152, 1511245856, 0);
-INSERT INTO `hd_auth_rule` VALUES (198, '/Admin/Access/deluser', '删除管理', 1, '', '', 1, '', 3, 156, 4, 1511254227, 1511254183, 0);
-INSERT INTO `hd_auth_rule` VALUES (199, '/Admin/Member/groupauth', '授权用户', 1, '', '', 1, '', 2, 156, 4, 1511254236, 1511254218, 0);
-INSERT INTO `hd_auth_rule` VALUES (200, '/Admin/Access/addrole', '新增角色', 1, '', '', 1, '', 5, 156, 4, 1511254321, 1511254321, 0);
-INSERT INTO `hd_auth_rule` VALUES (201, '/Admin/Access/disabledrole', '禁用角色', 1, '', '', 1, '', 6, 156, 4, 1511254348, 1511254348, 0);
-INSERT INTO `hd_auth_rule` VALUES (202, '/Admin/Access/delrole', '删除角色', 1, '', '', 1, '', 7, 156, 4, 1511254376, 1511254376, 0);
-INSERT INTO `hd_auth_rule` VALUES (203, '/Admin/Access/add', '新增节点', 1, '', '', 1, '', 9, 156, 4, 1511254488, 1511254488, 0);
-INSERT INTO `hd_auth_rule` VALUES (204, '/Admin/Access/delrole', '删除节点', 1, '', '', 1, '', 10, 156, 4, 1511254515, 1511254515, 0);
-INSERT INTO `hd_auth_rule` VALUES (205, '/Admin/Access/setstatus', '禁用节点', 1, '', '', 1, '', 11, 156, 4, 1511254540, 1511254540, 0);
-INSERT INTO `hd_auth_rule` VALUES (206, '/Admin/Access/edit', '编辑节点', 1, '', '', 1, '', 12, 156, 4, 1511254669, 1511254635, 0);
-INSERT INTO `hd_auth_rule` VALUES (207, '/Admin/Access/delnode', '删除节点', 1, '', '', 1, '', 13, 156, 4, 1519895514, 1511254712, 0);
-INSERT INTO `hd_auth_rule` VALUES (212, '/Admin/Access/authrole', '角色授权', 1, '', '', 1, '', 5, 156, 4, 1511577101, 1511577101, 0);
-INSERT INTO `hd_auth_rule` VALUES (260, '/Admin/Member/disableduser', '拉黑用户', 1, '', '', 1, '', 3, 129, 4, 1515375501, 1515375501, 0);
-INSERT INTO `hd_auth_rule` VALUES (345, '/Admin/member/expmember', '导出用户', 1, '', '', 1, '', 7, 129, 4, 1535531363, 1535531363, 0);
+INSERT INTO `hd_auth_rule` VALUES (116, '/admin/Index', '首页', 1, '', '', 1, '', 1, 112, 2, 1510821685, 1510821685, 1);
+INSERT INTO `hd_auth_rule` VALUES (117, '/admin/index/index', '后台首页', 1, '', '', 1, '', 0, 116, 3, 1510821714, 1510821714, 1);
+INSERT INTO `hd_auth_rule` VALUES (118, '/admin/index/home', '欢迎页', 1, '', '', 1, '', 0, 117, 4, 1510821738, 1510821738, 1);
+INSERT INTO `hd_auth_rule` VALUES (119, '/admin/System', '系统', 1, '', '', 1, '', 2, 112, 2, 1510821858, 1510821858, 1);
+INSERT INTO `hd_auth_rule` VALUES (120, '/admin/system/index', '系统配置', 1, '', '', 1, '', 0, 119, 3, 1519893466, 1510821899, 1);
+INSERT INTO `hd_auth_rule` VALUES (121, '/admin/system/setconfig', '网站设置', 1, '', '', 1, '', 1, 120, 4, 1511230393, 1510821953, 1);
+INSERT INTO `hd_auth_rule` VALUES (122, '/admin/system/configlist', '配置列表', 1, '', '', 1, '', 3, 120, 4, 1511230425, 1510822002, 1);
+INSERT INTO `hd_auth_rule` VALUES (128, '/admin/Member', '用户', 1, '', '', 1, '', 3, 112, 2, 1510903419, 1510903374, 1);
+INSERT INTO `hd_auth_rule` VALUES (129, '/admin/member/index', '会员管理', 1, '', '', 1, '', 0, 128, 3, 1510903806, 1510903806, 1);
+INSERT INTO `hd_auth_rule` VALUES (130, '/admin/member/userList', '会员列表', 1, '', '', 1, '', 1, 129, 4, 1527299741, 1510903840, 1);
+INSERT INTO `hd_auth_rule` VALUES (155, '/admin/Access', '权限', 1, '', '', 1, '', 99, 112, 2, 1538100786, 1510905487, 1);
+INSERT INTO `hd_auth_rule` VALUES (156, '/admin/access/index', '权限管理', 1, '', '', 1, '', 0, 155, 3, 1510905515, 1510905515, 1);
+INSERT INTO `hd_auth_rule` VALUES (157, '/admin/access/authlist', '管理列表', 1, '', '', 1, '', 1, 156, 4, 1511254157, 1510905538, 1);
+INSERT INTO `hd_auth_rule` VALUES (158, '/admin/access/rolelist', '角色管理', 1, '', '', 1, '', 4, 156, 4, 1519893513, 1510905567, 1);
+INSERT INTO `hd_auth_rule` VALUES (159, '/admin/access/nodelist', '节点列表', 1, '', '', 1, '', 8, 156, 4, 1511254459, 1510905590, 1);
+INSERT INTO `hd_auth_rule` VALUES (161, '/admin/system/saveallconfig', '提交设置', 1, '', '', 1, '', 2, 120, 4, 1511231152, 1511230376, 0);
+INSERT INTO `hd_auth_rule` VALUES (162, '/admin/system/addconfig', '新增配置', 1, '', '', 1, '', 4, 120, 4, 1511231142, 1511230491, 0);
+INSERT INTO `hd_auth_rule` VALUES (163, '/admin/system/editconfig', '修改配置', 1, '', '', 1, '', 5, 120, 4, 1511231136, 1511230545, 0);
+INSERT INTO `hd_auth_rule` VALUES (164, '/admin/system/delconfig', '删除配置', 1, '', '', 1, '', 6, 120, 4, 1511231126, 1511230582, 0);
+INSERT INTO `hd_auth_rule` VALUES (173, '/admin/member/useradd', '新增用户', 1, '', '', 1, '', 2, 129, 4, 1535531275, 1511245710, 0);
+INSERT INTO `hd_auth_rule` VALUES (174, '/admin/member/useredit', '编辑用户', 1, '', '', 1, '', 3, 129, 4, 1535531312, 1511245754, 0);
+INSERT INTO `hd_auth_rule` VALUES (175, '/admin/member/groupauth', '授权用户', 1, '', '', 1, '', 4, 129, 4, 1515375704, 1511245818, 0);
+INSERT INTO `hd_auth_rule` VALUES (176, '/admin/member/deluser', '删除用户', 1, '', '', 1, '', 6, 129, 4, 1512525152, 1511245856, 0);
+INSERT INTO `hd_auth_rule` VALUES (198, '/admin/access/deluser', '删除管理', 1, '', '', 1, '', 3, 156, 4, 1511254227, 1511254183, 0);
+INSERT INTO `hd_auth_rule` VALUES (199, '/admin/member/groupauth', '授权用户', 1, '', '', 1, '', 2, 156, 4, 1511254236, 1511254218, 0);
+INSERT INTO `hd_auth_rule` VALUES (200, '/admin/access/addrole', '新增角色', 1, '', '', 1, '', 5, 156, 4, 1511254321, 1511254321, 0);
+INSERT INTO `hd_auth_rule` VALUES (201, '/admin/access/disabledrole', '禁用角色', 1, '', '', 1, '', 6, 156, 4, 1511254348, 1511254348, 0);
+INSERT INTO `hd_auth_rule` VALUES (202, '/admin/access/delrole', '删除角色', 1, '', '', 1, '', 7, 156, 4, 1511254376, 1511254376, 0);
+INSERT INTO `hd_auth_rule` VALUES (203, '/admin/access/add', '新增节点', 1, '', '', 1, '', 9, 156, 4, 1511254488, 1511254488, 0);
+INSERT INTO `hd_auth_rule` VALUES (204, '/admin/access/delrole', '删除节点', 1, '', '', 1, '', 10, 156, 4, 1511254515, 1511254515, 0);
+INSERT INTO `hd_auth_rule` VALUES (205, '/admin/access/setstatus', '禁用节点', 1, '', '', 1, '', 11, 156, 4, 1511254540, 1511254540, 0);
+INSERT INTO `hd_auth_rule` VALUES (206, '/admin/access/edit', '编辑节点', 1, '', '', 1, '', 12, 156, 4, 1511254669, 1511254635, 0);
+INSERT INTO `hd_auth_rule` VALUES (207, '/admin/access/delnode', '删除节点', 1, '', '', 1, '', 13, 156, 4, 1519895514, 1511254712, 0);
+INSERT INTO `hd_auth_rule` VALUES (212, '/admin/access/authrole', '角色授权', 1, '', '', 1, '', 5, 156, 4, 1511577101, 1511577101, 0);
+INSERT INTO `hd_auth_rule` VALUES (260, '/admin/member/disableduser', '拉黑用户', 1, '', '', 1, '', 3, 129, 4, 1515375501, 1515375501, 0);
+INSERT INTO `hd_auth_rule` VALUES (345, '/admin/member/expmember', '导出用户', 1, '', '', 1, '', 7, 129, 4, 1535531363, 1535531363, 0);
 INSERT INTO `hd_auth_rule` VALUES (346, '/admin/demo', '测试', 1, '', '', 1, '', 3, 112, 2, 1541574115, 1541574080, 1);
 INSERT INTO `hd_auth_rule` VALUES (347, '/admin/demo/index', '测试管理', 1, '', '', 1, '', 1, 346, 3, 1541574103, 1541574103, 1);
 INSERT INTO `hd_auth_rule` VALUES (348, '/admin/demo/demoList', '测试列表', 1, '', '', 1, '', 1, 347, 4, 1541574135, 1541574135, 1);
@@ -187,6 +181,24 @@ CREATE TABLE `hd_member`  (
 -- ----------------------------
 -- Records of hd_member
 -- ----------------------------
-INSERT INTO `hd_member` VALUES (1, '超级管理员', '超级管理员', '15210455141', 'e10adc3949ba59abbe56e057f20f883e', '/public/uploads/product/2018-11-07/5be2a67e5e312.png', '61.48.25.19', 1541580415, '127.0.0.1', 415, 1, 1534323256, 1541066955);
+INSERT INTO `hd_member` VALUES (1, 'admin', 'admin', '15210455141', 'e10adc3949ba59abbe56e057f20f883e', '/uploads/product/2018-11-08/5be3de5c38d63.png', '61.48.25.19', 1541660403, '127.0.0.1', 415, 1, 1534323256, 1541066955);
+
+-- ----------------------------
+-- Table structure for ke_migrations
+-- ----------------------------
+DROP TABLE IF EXISTS `ke_migrations`;
+CREATE TABLE `ke_migrations`  (
+  `version` bigint(20) NOT NULL,
+  `migration_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `breakpoint` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`version`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of ke_migrations
+-- ----------------------------
+INSERT INTO `ke_migrations` VALUES (20181108034631, 'AdminRule', '2018-11-08 12:43:26', '2018-11-08 12:43:26', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
