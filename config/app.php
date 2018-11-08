@@ -141,6 +141,7 @@ return [
     'show_error_msg'         => true,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
+    //上传处理
     'picture_upload' => array(
         // 允许上传的文件MiMe类型
         'mimes'    => [],

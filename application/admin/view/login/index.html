@@ -18,12 +18,12 @@
 	</head>
 	<body>
 		<div class="login_info">
-			<h2>伍加陆健康管理系统</h2>
-			<div class="tiptxt">伍加陆健康管理系统-新一代管理系统</div>
+			<h2>后台管理系统</h2>
+			<div class="tiptxt">后台管理系统-新一代管理系统</div>
 			<div class="login-input">
 				<ul>
 
-					<form action="{:url('login/index')}" method="POST" data-url="{:url('login/index')}" enctype="multipart/form-data" id="formData">
+					<form action="{:url('login/index')}" method="POST" data-url="{:url('login/index')}" enctype="multipart/form-data" id="formData" onsubmit="return false">
 						<li class="loginname-input">
 							<i class="icon icon-user"></i>
 							<input type="text" name="loginId" id="loginId" placeholder="请输入登录帐号" class="inp" maxlength="20">
@@ -38,14 +38,14 @@
 							<span class="imgcode"><img id="captcha" src="{:url('login/verify')}"></span>
 						</li>
 						<li>
-							<input type="submit" value="登录" id="btnSubmit" class="btn">
+							<input type="submit" value="登录" id="btnSubmit" class="btn ajaxSubmit">
 						</li>
 					</form>
 				</ul>
 			</div>
 		</div>
 		<div class="footer">
-			<span class="txtc9">版权所有 北京伍加陆健康管理云平台 Copyright © 2016 - 2020</span>
+			<span class="txtc9">版权所有 后台管理系统 Copyright © 2016 - 2020</span>
 		</div>
 			<script>
 			$(function() {
