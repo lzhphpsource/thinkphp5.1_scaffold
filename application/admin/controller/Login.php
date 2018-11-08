@@ -78,7 +78,7 @@ class Login extends Base
                             * 可以根据用户不同的类型跳转致不同的应用接口
                             * 例如：超级管理员、管理员、商户、代理
                             */
-                            $this->success('登录中...', 'admin/Index/index');
+                            $this->success('登录中...', 'admin/index/index');
                             // if (is_administrator($uuid)) {
                             //     $this->success('登录中...', 'Admin/Index/index');
                             // } else {
@@ -86,7 +86,7 @@ class Login extends Base
                             // }
                             }
                         } else {
-                            $this->success('登录中...', 'admin/Index/index');
+                            $this->success('登录中...', 'admin/index/index');
                         }    
                     } else {
                         /* 登录失败根据模型数据处理任意扩展 */

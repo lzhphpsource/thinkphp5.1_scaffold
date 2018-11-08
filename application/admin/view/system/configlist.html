@@ -27,10 +27,10 @@
 						<a class="menu-btn"></a>
 						<div class="l-list">
 							<ul class="icon-list">
-								<li><a class="add" href="{:url('System/addConfig')}"><i></i><span>新增配置</span></a></li>
+								<li><a class="add" href="{:url('admin/system/addConfig')}"><i></i><span>新增配置</span></a></li>
 								<li><a class="all" href="#" ><i></i><span>全选</span></a></li>
 								<!-- <li><a id="btnDelete" class="del" href="#"><i></i><span>批量删除</span></a></li> -->
-								<li class="myli"><a class="isAllowed" style="background:rgb(198, 198, 198);cursor: not-allowed;" data-type="all" data-ids="" id="btnDelete" class="del" data-url="{:url('System/delConfig')}"><i></i>批量删除</a></li>
+								<li class="myli"><a class="isAllowed" style="background:rgb(198, 198, 198);cursor: not-allowed;" data-type="all" data-ids="" id="btnDelete" class="del" data-url="{:url('admin/system/delConfig')}"><i></i>批量删除</a></li>
 							</ul>
 						</div>
 						<div class="r-list">
@@ -67,9 +67,9 @@
 			                	<td>{$vo.sort}</td>
 			                	<td>{$vo['status']?'显示':'不显示'}</td>
 			                	<td>
-			                		[ <a href="{:url('System/editConfig',array('id'=>$vo['id']))}" class="btn-xs btn-link ">编辑</a> ]
-			                		<!-- [ <a href="{:url('System/delConfig',array('id'=>$vo['id']))}" class="btn-xs btn-link button">删除</a> ] -->
-			                		[ <a href="javascript:;"  data-url="{:url('System/delConfig')}" data-ids="{$vo.id}" class="btn-xs btn-link isConfirm check_a" style="background: #fff;border: none;cursor: pointer;">删除</a> ]
+			                		[ <a href="{:url('admin/system/editConfig',array('id'=>$vo['id']))}" class="btn-xs btn-link ">编辑</a> ]
+			                		<!-- [ <a href="{:url('admin/system/delConfig',array('id'=>$vo['id']))}" class="btn-xs btn-link button">删除</a> ] -->
+			                		[ <a href="javascript:;"  data-url="{:url('admin/system/delConfig')}" data-ids="{$vo.id}" class="btn-xs btn-link isConfirm check_a" style="background: #fff;border: none;cursor: pointer;">删除</a> ]
 			                	</td>
 							</tr>
 						{/volist}

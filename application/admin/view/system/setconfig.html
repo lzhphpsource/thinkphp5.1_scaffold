@@ -26,7 +26,7 @@
 							<!--由于获取不到Config，所以用php赋值一次Think.config.config_group_list-->
 							{php}$config_group_list = Config::get()['config_group_list'];{/php}
 							{volist name="config_group_list" id="group"}
-		                        <li><a href="{:url('System/setConfig',array('id'=>$key))}" {eq name="id" value="$key" }class="selected"{/eq}>{$group}配置</a></li>
+		                        <li><a href="{:url('admin/system/setConfig',array('id'=>$key))}" {eq name="id" value="$key" }class="selected"{/eq}>{$group}配置</a></li>
 		                    {/volist}
 						</li>
 					</ul>
@@ -36,7 +36,7 @@
 		<!--/选项卡-->
 
 		<!--内容-->
-		<form id="formData" action="{:url('System/saveAllConfig')}" method="POST" onsubmit="return false">
+		<form id="formData" action="{:url('admin/system/saveAllConfig')}" method="POST" onsubmit="return false">
 			<div class="tab-content">
 				{volist name="list" id="config" empty="数据为空！请前往“配置管理”处添加"}
 					<dl>
