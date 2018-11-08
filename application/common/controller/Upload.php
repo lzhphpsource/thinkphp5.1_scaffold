@@ -35,7 +35,7 @@ class Upload {
 		$upload_type = $this->request->get('uploadtype', 'picture', 'trim');
 		$setpath     = $this->request->param('setpath', 'picture', 'trim');
 		$config      = config($upload_type.'_upload');
-		$rootPath    = $setpath!='picture' && $setpath ? './public/uploads/'.$setpath : $config['rootPath'];
+		$rootPath    = $setpath!='picture' && $setpath ? './uploads/'.$setpath : $config['rootPath'];
 
 		$upload_path = $rootPath.'/'.call_user_func_array($config['subName'][0],[$config['subName'][1],time()]);
 		$file        = $this->request->file('file');
