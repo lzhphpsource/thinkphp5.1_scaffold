@@ -35,19 +35,5 @@ return [
     'taglib_begin' => '{',
     // 标签库标签结束标记
     'taglib_end'   => '}',
-    // 模板替换
-    'tpl_replace_string'  =>  [
-        '__ROOT__'     => '/',
-        '__BASE__'     => BASE_PATH.'/public/static/base',
-        '__PUBLIC__'   => BASE_PATH.'/public',
-        '__STATIC__'   => BASE_PATH.'/public/static',
-        '__LIBS__'     => BASE_PATH.'/public/static/libs',
-        '__ADMINCSS__' => BASE_PATH.'/public/static/admin/css',
-        '__ADMINJS__'  => BASE_PATH.'/public/static/admin/js',
-        '__ADMINIMG__' => BASE_PATH.'/public/static/admin/images',
-        '__INDEXCSS__' => BASE_PATH.'/public/static/index/css',
-        '__INDEXJS__'  => BASE_PATH.'/public/static/index/js',
-        '__INDEXIMG__' => BASE_PATH.'/public/static/index/images',
-    ],
     'default_filter' => ''
 ];

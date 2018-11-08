@@ -11,17 +11,19 @@ namespace app\common\behavior;
 
 use think\facade\Config as thinkConfig;
 use app\common\Controller\Base;
+use think\facade\Env;
 
 class Config
 {
     public function run($params)
     {
-        defined('PUBLIC_URL') or define('PUBLIC_URL',isset($params['module'][0]) ? $params['module'][0]:config('default_module'));
+        defined('PUBLIC_URL') or define('PUBLIC_URL', isset($params['module'][0]) ? $params['module'][0] : config('default_module'));
 
-    	$new_config =[];
+        $new_config = [];
         //头信息
         $header_info = request()->header();
 
+        /*
         $new_config['view_replace_str'] = [
                 '__ROOT__'     => '/',
                 '__BASE__'     => BASE_PATH.'/public/static/base',
@@ -39,13 +41,14 @@ class Config
                 '__FINANCEJS__'  => BASE_PATH.'/public/static/finance/js',
                 '__FINANCEIMG__' => BASE_PATH.'/public/static/finance/img',
         ];
+        */
 
-        $module_public_url = '/public/static/'.PUBLIC_URL;
-        $new_config['view_replace_str']['__MODULE__']  = $module_public_url;
-        $new_config['view_replace_str']['__MODULE_IMG__']  = $module_public_url.'/images';
-        $new_config['view_replace_str']['__MODULE_CSS__']  = $module_public_url.'/css';
-        $new_config['view_replace_str']['__MODULE_JS__']   = $module_public_url.'/js';
-        $new_config['view_replace_str']['__MODULE_LIBS__'] = $module_public_url.'/libs';
+        $module_public_url = Env::get('APP_PATH', '/') . 'static/' . PUBLIC_URL;
+        $new_config['view_replace_str']['__MODULE__'] = $module_public_url;
+        $new_config['view_replace_str']['__MODULE_IMG__'] = $module_public_url . '/images';
+        $new_config['view_replace_str']['__MODULE_CSS__'] = $module_public_url . '/css';
+        $new_config['view_replace_str']['__MODULE_JS__'] = $module_public_url . '/js';
+        $new_config['view_replace_str']['__MODULE_LIBS__'] = $module_public_url . '/libs';
 
         thinkConfig::set($new_config);
 
