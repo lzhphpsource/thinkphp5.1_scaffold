@@ -8,7 +8,7 @@ module.exports = {
     // 静态文件根目录
     assetsPublicPath: '/',
     // 静态文件目录
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: 'vueStatic',
 
     dev: {
 
@@ -47,10 +47,10 @@ module.exports = {
         // 模板编译保存目录
         templatePath: '../public',
         // 静态文件编译保存目录
-        staticPath: '../public/static',
+        staticPath: '../public/vueStatic',
 
         assetsPublicPath: '/',
-        assetsSubDirectory: 'static',
+        assetsSubDirectory: 'vueStatic',
 
         /**
          * Source Maps
