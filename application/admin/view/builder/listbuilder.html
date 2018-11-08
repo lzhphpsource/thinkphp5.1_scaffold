@@ -35,11 +35,11 @@
                         </div>
 
                         {notempty name="selects"}
-		                    <form id="selectForm" method="get" action="{$selectPostUrl||default=$default_url}" class="form-dont-clear-url-param form-inline ml-20">            
+		                    <form id="selectForm" method="get" action="{$selectPostUrl||default=$default_url}" class="form-dont-clear-url-param form-inline ml-20">
 		                        {volist name="selects" id="select"}
-		                        <div class="form-group">    
+		                        <div class="form-group">
 		                            {notempty name="select.title"}
-		                                <label for="{$select['name']}"  class=" pr-0">{$select.title}:</label>          
+		                                <label for="{$select['name']}"  class=" pr-0">{$select.title}:</label>
 		                            {/notempty}
 
 		                            <select name="{$select['name']}" data-role="select_text" class="form-control pl-20">
@@ -58,7 +58,7 @@
 								<input name="keyword" type="text" placeholder="{$search.title}" id="txtKeywords" class="keyword">
 								<button id="lbtnSearch" class="btn-search" type="submit">查询</button>
 							</form>
-                           
+
                         </div>
                         {/notempty}
                     </div>
@@ -90,7 +90,7 @@
 										{/volist}
 									</tr>
 								{/volist}
-								
+
 							</tbody>
 						</table>
 					{else /}
@@ -103,7 +103,7 @@
 						<volist name="foot_button_list" id="button">
 							<a {$button.attribute}>{$button.title}</a>&nbsp;
 						</volist>
-					{/notempty} 
+					{/notempty}
 					{notempty name="table_data_page"}
 						<div class="line20"></div>
 						<!--数据分页-->

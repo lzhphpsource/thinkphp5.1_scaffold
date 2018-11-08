@@ -25,8 +25,10 @@ abstract class AdminBuilder extends Base
         //获取模版的名称
         //$template ='Builder/'.$templateFile;
         //显示页面
-        return $this->fetch('builder/' . $templateFile);
+        //halt();
+        //return $this->fetch('/builder/' . $templateFile);
         // echo parent::fetch('./application/admin/view/builder/'.$templateFile.'.html');
+         echo parent::fetch('/builder/' . $templateFile);
     }
 
     protected function compileHtmlAttr($attr) {

@@ -36,7 +36,7 @@
 						<div class="tab-content" >
 							{volist name="fieldList" id="field" key="k"} 
 								{switch name="field.type"} 
-									{include file="./application/admin/view/builder/from-fields.html"/} 
+									{include file="../application/admin/view/builder/from-fields.html"/}
 									{default/} 
 								{/switch} 
 							{/volist}
@@ -47,7 +47,7 @@
 							{volist name="fieldList" id="field" key="k"} 
 								{php}if(in_array($field['name'],$vGroup)||(is_array($field['name'])&&in_array(implode('|', $field['name']),$vGroup))){{/php}
 	                                {switch name="field.type"} 
-										{include file="./application/admin/view/builder/from-fields.html"/} 
+										{include file="../application/admin/view/builder/from-fields.html"/}
 										{default/} 
 									{/switch} 
                                 {php}}{/php}

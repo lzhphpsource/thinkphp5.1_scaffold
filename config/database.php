@@ -15,7 +15,7 @@ return [
     // 服务器地址
     'hostname'        => Env::get('DB_HOST', '127.0.0.1'),
     // 数据库名
-    'database'        => Env::get('DB_NAME', 'test'),
+    'database'        => Env::get('DB_NAME', 'demo51'),
     // 用户名
     'username'        => Env::get('DB_USER', 'root'),
     // 密码
