@@ -242,12 +242,9 @@ function root_full_url($path)
  */
 function getRootUrl()
 {
-    if (BASE_PATH != '') {
-        return BASE_PATH . '/';
-    }
     // if (config('URL_MODEL') == 2)
     //     return BASE_PATH . '/';
-    return BASE_PATH;
+    return \think\facade\Env::get('APP_PATH', '/');
 }
 
 

@@ -623,7 +623,7 @@ class AdminListBuilder extends AdminBuilder
                     // 禁用按钮与隐藏比较特殊，它需要根据数据当前状态判断是显示禁用还是启用
                     if (isset($right_button['type'])) {
                        if ($right_button['type'] === 'forbid' || $right_button['type'] === 'hide'){
-                            $right_button = $right_button[$data['status']];
+                            $right_button = isset($right_button[$data['status']]) ? $right_button[$data['status']] : [];
                         }
                     }
 
@@ -758,7 +758,7 @@ class AdminListBuilder extends AdminBuilder
                             //$data['"'.$column['name'].'"'] =$column_array[$data[$column['name']]];
                             //halt($column_array[$data[$column['name']]]);
 
-                            $data[$column['name']] =$column_array[$data[$column['name']]];
+                            $data[$column['name']] =isset($column_array[$data[$column['name']]]) ? $column_array[$data[$column['name']]] : true;
 
                             //halt($column_array[$data[$column['name']]]);
                         }

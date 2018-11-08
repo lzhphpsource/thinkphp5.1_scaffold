@@ -7,17 +7,14 @@ namespace Composer\Autoload;
 class ComposerStaticInitbc5b5135634b31df55509f2a78c07b8c
 {
     public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '72142d7b40a3a0b14e91825290b5ad82' => __DIR__ . '/..' . '/cakephp/core/functions.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '028fdea3165c4ba1ecccc83b7fec69fc' => __DIR__ . '/..' . '/cakephp/collection/functions.php',
-        '948ad5488880985ff1c06721a4e447fe' => __DIR__ . '/..' . '/cakephp/utility/bootstrap.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
+        'ddc3cd2a04224f9638c5d0de6a69c7e3' => __DIR__ . '/..' . '/topthink/think-migration/src/config.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         't' => 
         array (
+            'think\\migration\\' => 16,
             'think\\composer\\' => 15,
             'think\\captcha\\' => 14,
         ),
@@ -25,31 +22,17 @@ class ComposerStaticInitbc5b5135634b31df55509f2a78c07b8c
         array (
             'app\\' => 4,
         ),
-        'S' => 
-        array (
-            'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Polyfill\\Ctype\\' => 23,
-            'Symfony\\Component\\Yaml\\' => 23,
-            'Symfony\\Component\\Filesystem\\' => 29,
-            'Symfony\\Component\\Console\\' => 26,
-            'Symfony\\Component\\Config\\' => 25,
-        ),
         'P' => 
         array (
             'Phinx\\' => 6,
         ),
-        'C' => 
-        array (
-            'Cake\\Utility\\' => 13,
-            'Cake\\Datasource\\' => 16,
-            'Cake\\Database\\' => 14,
-            'Cake\\Core\\' => 10,
-            'Cake\\Collection\\' => 16,
-            'Cake\\Cache\\' => 11,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'think\\migration\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-migration/src',
+        ),
         'think\\composer\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-installer/src',
@@ -62,57 +45,9 @@ class ComposerStaticInitbc5b5135634b31df55509f2a78c07b8c
         array (
             0 => __DIR__ . '/../..' . '/application',
         ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Polyfill\\Ctype\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
-        ),
-        'Symfony\\Component\\Yaml\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/yaml',
-        ),
-        'Symfony\\Component\\Filesystem\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/filesystem',
-        ),
-        'Symfony\\Component\\Console\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/console',
-        ),
-        'Symfony\\Component\\Config\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/config',
-        ),
         'Phinx\\' => 
         array (
-            0 => __DIR__ . '/..' . '/robmorgan/phinx/src/Phinx',
-        ),
-        'Cake\\Utility\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cakephp/utility',
-        ),
-        'Cake\\Datasource\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cakephp/datasource',
-        ),
-        'Cake\\Database\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cakephp/database',
-        ),
-        'Cake\\Core\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cakephp/core',
-        ),
-        'Cake\\Collection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cakephp/collection',
-        ),
-        'Cake\\Cache\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cakephp/cache',
+            0 => __DIR__ . '/..' . '/topthink/think-migration/phinx/src/Phinx',
         ),
     );
 

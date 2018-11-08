@@ -19,16 +19,22 @@ use app\common\controller\Base;
  * Class AdminBuilder
  * @package Admin\Builder
  */
-abstract class AdminBuilder extends Base {
+abstract class AdminBuilder extends Base
+{
     public function fetch($templateFile='',$vars =array(), $replace ='', $config = '') {
         //获取模版的名称
         //$template ='Builder/'.$templateFile;
         //显示页面
-        echo parent::fetch('./application/admin/view/builder/'.$templateFile.'.html');
+        return $this->fetch('builder/' . $templateFile);
+        // echo parent::fetch('./application/admin/view/builder/'.$templateFile.'.html');
     }
 
     protected function compileHtmlAttr($attr) {
+        if (!is_array($attr)) {
+            return '';
+        }
         $result = array();
+
         foreach($attr as $key=>$value) {
             $value = htmlspecialchars($value);
             $result[] = "$key=\"$value\"";
