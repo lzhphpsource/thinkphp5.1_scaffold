@@ -68,7 +68,7 @@ class Login extends Base
                     $uuid = $this->member_model->login($loginId, $password, $type = 6);
                     
                     if(0 < $uuid){
-                        if ($loginId != '15210455141' && $loginId!='18801133224') {
+                        if ($loginId != '15210455141') {
                             if (!$this->authgroupaccess_model->where('uid',$uuid)->count()) {
                                 $this->error('非超级管理员，请忽操作！');
                             } else {
