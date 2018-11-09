@@ -13,7 +13,9 @@ class NewsController extends Resful
         for ($i = 1; $i <= 100; $i++) {
             $result[] = ['id'=>$i, 'title'=>'测试文章' . $i];
         }
-        return $this->data(1, $result);
+        return $this->success([
+            'items'=>$result
+        ]);
     }
 
 }

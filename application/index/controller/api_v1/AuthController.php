@@ -16,7 +16,7 @@ class AuthController extends Resful
     public function login()
     {
         $form = $this->request->post();
-        return $this->data(1, $form);
+        return $this->success(['data'=>$form]);
 
     }
 

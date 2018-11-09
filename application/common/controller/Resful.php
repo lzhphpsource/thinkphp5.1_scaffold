@@ -66,56 +66,25 @@ class Resful
      * @param int $errCode
      * @return \think\response\Json
      */
-    protected function error($msg, $errCode = 0)
+    protected function error($msg, $errCode = 200)
     {
-        $result = ['code'=>$errCode, 'message'=>$msg];
-        return json($result);
+        $result = ['error'=>$msg];
+        return json($result, $errCode);
     }
 
     /**
      * 返回成功接口数据
-     * @param $msg
      * @param array $data
+     * @param integer $code
      * @return \think\response\Json
      */
-    protected function success($msg, $data = [])
+    protected function success($data = [], $code = 200)
     {
-        $result = ['code'=>1, 'message'=>$msg];
+        $result = ['code'=>1];
         if (!empty($data)) {
-            $result['data'] = $data;
+            $result = array_merge($result, $data);
         }
-        return json($result);
-    }
-
-    /**
-     * 返回接口数据
-     * @param $msg
-     * @param array $data
-     * @return \think\response\Json
-     */
-    protected function data($code, $data = [], $message = 'OK')
-    {
-        $result = ['code'=>$code, 'message'=>$message];
-        if (!empty($data)) {
-            $result['data'] = $data;
-        }
-        return json($result);
-    }
-
-
-    /**
-     * 返回列表数据
-     * @param array $rows
-     * @param number $total
-     * @param array $data 附加数据
-     * @return \think\response\Json
-     */
-    protected function result($rows, $total, array $data = [])
-    {
-        return json(['code'=>1, 'message'=>'OK', 'data'=>array_merge([
-            'rows'=>$rows,
-            'total'=>$total
-        ], $data)]);
+        return json($result, $code);
     }
 
 

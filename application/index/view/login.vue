@@ -55,7 +55,7 @@
         onLogin () {
             this.$http.post('login', this.form)
                 .then(result => {
-                    console.log('看看后端获取到了什么', result)
+                    console.log('看看后端获取到了什么', result.data)
                     alert('post请求成功,请到控制台查看信息')
                 })
         }

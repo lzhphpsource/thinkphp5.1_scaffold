@@ -15,14 +15,14 @@ module.exports = {
         // 是否自动打开浏览器
         open: false,
         // 调试服务器主机名
-        host: 'localhost', // can be overwritten by process.env.HOST
+        host: '127.0.0.1', // can be overwritten by process.env.HOST
         // 调试服务器端口
         port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
 
         // 代理到后端
         proxyTable: {
             '/api': {
-                target: 'http://localhost/',
+                target: 'http://tpvue.test.kecms.cn:3030/',
                 ws: true,
                 changeOrigin: true
                 /*

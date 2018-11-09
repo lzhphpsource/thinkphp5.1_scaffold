@@ -11,6 +11,8 @@ namespace app\index\controller;
 
 class IndexController
 {
-    public function index(){
+    public function index()
+    {
+        return 'hello';
     }
 }
