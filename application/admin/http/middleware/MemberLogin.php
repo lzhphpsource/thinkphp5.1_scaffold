@@ -16,7 +16,7 @@ class MemberLogin
     {
 
         if( !is_login() ) {
-            return redirect('Login/index');
+            return redirect('admin/login/index');
         }
         return $next($request);
     }

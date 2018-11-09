@@ -27,7 +27,8 @@ class Member extends Admin
      * [userlist 用户列表]
      * @return [type] [description]
      */
-    public function userlist(){
+    public function userlist()
+    {
         $keyword =isset($this->param['keyword']) ? $this->param['keyword']:false;
         $data_list = $this->member_model->where('username|mobile','like','%'.$keyword.'%')->order('register_time desc, id desc')->paginate(15,false,['query' => request()->param()]);
 
@@ -57,7 +58,8 @@ class Member extends Admin
     /**
      * 导出用户
      */
-    public function expMember(){
+    public function expMember()
+    {
         $keyword =isset($this->param['keyword']) ? $this->param['keyword']:false;
         $data_list = $this->member_model->where('username|mobile','like','%'.$keyword.'%')->order('register_time desc, id desc')->select();
         if(!count($data_list))  $this->error('暂无数据');
@@ -83,11 +85,14 @@ class Member extends Admin
         }
         exportExcel($data_array,false,$filename);
     }
+
+
     /**
      * [userAdd 新增用戶]
      * @return [type] [description]
      */
-    public function userAdd(){
+    public function userAdd()
+    {
         if(IS_POST){
             $data = $this->param;
             $haveUser = $this->member_model->where('username',$data['username'])->find();
@@ -143,12 +148,15 @@ class Member extends Admin
                     ->fetch();
         }
     }
+
+
     /**
      * [userEdit 编辑会员]
      * @param  [type] $id [description]
      * @return [type]     [description]
      */
-    public function userEdit($id=''){
+    public function userEdit($id='')
+    {
         if(IS_POST){
             $data=$this->param;
 
@@ -210,7 +218,8 @@ class Member extends Admin
     /**
      * [resetPassword 修改密码]
      */  
-    public function resetPassword(){
+    public function resetPassword()
+    {
         if (IS_POST) {
             //$oldpassword=I('post.oldpassword',false);
             $newpassword=$this->param['newpassword'];
