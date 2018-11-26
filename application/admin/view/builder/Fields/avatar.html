@@ -37,7 +37,7 @@
     	<input style="width: 288px;padding: 5px 4px;border: 1px solid #eee;float: left;height: 22px;margin-left: 20px;" class="uploader-list" name="{$field.name}" type="text" id="{$field.id}" value="{present name="field.value"}{$field.value}{/present}" class="input normal" {$field.extra_attr}/>
     	{notempty name="field.tip"}<span class="Validform_checktip">{present name="field.confirm"}{eq name="field.confirm" value="required"}<span class="red">*</span> {/eq}{/present}{$field.tip}</span>{/notempty}
 	</dd> -->
-			<img id="imghead" border="0" src="/public/static/admin/photo_icon.png" width="150" height="150" onClick="$('#previewImg').click();">
+			<img id="imghead" border="0" src="/static/admin/photo_icon.png" width="150" height="150" onClick="$('#previewImg').click();">
 			<input type="file" onChange="previewImage(this)" id="previewImg" style="display:none">
 		<span class="Validform_checktip"><span style="color:red">*</span> 文件格式GIF、JPG、JPEG、PNG文件大小80k以内，建议尺寸80*80像素</span>
 		</div>

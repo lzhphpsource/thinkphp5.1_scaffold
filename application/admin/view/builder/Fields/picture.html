@@ -16,7 +16,7 @@
         {notempty name="field.tip"}<span class="Validform_checktip">{present name="field.confirm"}{eq name="field.confirm" value="required"}<span class="red">*</span> {/eq}{/present}{$field.tip}</span>{/notempty}
     </dd> -->
         <span id="field_uploader_picture_{$field.id}">
-        <img id="uploader_{$field.id}" border="0" src="{present name="field.value"}{$field.value|cdn_img_url=###,'',1|default='/public/static/mall/images/photo_icon.png'}{else/}/public/static/admin/images/photo_icon.png{/present}" width="150" height="150"></span>
+        <img id="uploader_{$field.id}" border="0" src="{present name="field.value"}{$field.value|cdn_img_url=###,'',1|default='/public/static/mall/images/photo_icon.png'}{else/}/static/admin/images/photo_icon.png{/present}" width="150" height="150"></span>
         <!-- <input type="file" onChange="previewImage(this)" id="previewImg" style="display:none"> -->
         <input class="attach" type="hidden" id="{$field.id}" name="{$field.name}" value="{$field.value|default=''}"/>
         <span class="Validform_checktip"><span style="color:red">*</span> 文件格式GIF、JPG、JPEG、PNG文件大小80k以内，建议尺寸80*80像素</span>
