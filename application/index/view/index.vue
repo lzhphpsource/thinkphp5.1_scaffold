@@ -50,7 +50,7 @@
             this.$http.get('news')
                 .then(result => {
                     console.log(result)
-                    this.rows = result.data.data
+                    this.rows = result.data.items
                 })
         }
 
