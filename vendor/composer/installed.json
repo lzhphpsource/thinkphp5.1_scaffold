@@ -1,24 +1,110 @@
 [
     {
-        "name": "topthink/framework",
-        "version": "v5.1.28",
-        "version_normalized": "5.1.28.0",
+        "name": "liaozh/api-doc",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "dist": {
+            "type": "path",
+            "url": "packages/api-doc",
+            "reference": "c7d4aaf4897856b3b93a159a92a13cea61e5d1fa"
+        },
+        "require": {
+            "topthink/framework": "5.1.*",
+            "topthink/think-installer": ">=1.0.10"
+        },
+        "type": "library",
+        "extra": {
+            "think-config": {
+                "document": "src/config.php"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "api\\doc\\": "src/"
+            },
+            "files": [
+                "src/helper.php"
+            ]
+        },
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "liaozhonghao",
+                "email": "liao06550107@gmail.com"
+            }
+        ],
+        "description": "api document generate for thinkphp5"
+    },
+    {
+        "name": "squizlabs/php_codesniffer",
+        "version": "3.3.2",
+        "version_normalized": "3.3.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/top-think/framework.git",
-            "reference": "b5077520855a1f406205687c73cdeaee1ed618c2"
+            "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+            "reference": "6ad28354c04b364c3c71a34e4a18b629cc3b231e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/framework/zipball/b5077520855a1f406205687c73cdeaee1ed618c2",
-            "reference": "b5077520855a1f406205687c73cdeaee1ed618c2",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
+            "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/6ad28354c04b364c3c71a34e4a18b629cc3b231e",
+            "reference": "6ad28354c04b364c3c71a34e4a18b629cc3b231e",
+            "shasum": ""
+        },
+        "require": {
+            "ext-simplexml": "*",
+            "ext-tokenizer": "*",
+            "ext-xmlwriter": "*",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
+        },
+        "time": "2018-09-23T23:08:17+00:00",
+        "bin": [
+            "bin/phpcs",
+            "bin/phpcbf"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Greg Sherwood",
+                "role": "lead"
+            }
+        ],
+        "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+        "homepage": "http://www.squizlabs.com/php-codesniffer",
+        "keywords": [
+            "phpcs",
+            "standards"
+        ]
+    },
+    {
+        "name": "topthink/framework",
+        "version": "v5.1.37.1",
+        "version_normalized": "5.1.37.1",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/top-think/framework.git",
+            "reference": "05eecd121d18d6705aaa10aa44fcdf7c14da4d0b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/top-think/framework/zipball/05eecd121d18d6705aaa10aa44fcdf7c14da4d0b",
+            "reference": "05eecd121d18d6705aaa10aa44fcdf7c14da4d0b",
+            "shasum": ""
         },
         "require": {
             "php": ">=5.6.0",
@@ -33,7 +119,7 @@
             "sebastian/phpcpd": "2.*",
             "squizlabs/php_codesniffer": "2.*"
         },
-        "time": "2018-10-29T02:52:45+00:00",
+        "time": "2019-05-28T06:57:29+00:00",
         "type": "think-framework",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
@@ -71,13 +157,7 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-captcha/zipball/54c8a51552f99ff9ea89ea9c272383a8f738ceee",
             "reference": "54c8a51552f99ff9ea89ea9c272383a8f738ceee",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
+            "shasum": ""
         },
         "require": {
             "topthink/framework": "5.1.*"
@@ -106,6 +186,47 @@
         "description": "captcha package for thinkphp5"
     },
     {
+        "name": "topthink/think-helper",
+        "version": "v3.1.2",
+        "version_normalized": "3.1.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/top-think/think-helper.git",
+            "reference": "a629c4271fdf3d7e7c6d89089791417cb4796a2c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/top-think/think-helper/zipball/a629c4271fdf3d7e7c6d89089791417cb4796a2c",
+            "reference": "a629c4271fdf3d7e7c6d89089791417cb4796a2c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.1.0"
+        },
+        "time": "2019-07-11T04:35:03+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "think\\": "src"
+            },
+            "files": [
+                "src/helper.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "yunwuxin",
+                "email": "448901948@qq.com"
+            }
+        ],
+        "description": "The ThinkPHP6 Helper Package"
+    },
+    {
         "name": "topthink/think-installer",
         "version": "v2.0.0",
         "version_normalized": "2.0.0.0",
@@ -118,13 +239,7 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-installer/zipball/f5400a12c60e513911aef41fe443fa6920952675",
             "reference": "f5400a12c60e513911aef41fe443fa6920952675",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
+            "shasum": ""
         },
         "require": {
             "composer-plugin-api": "^1.0"
@@ -167,13 +282,7 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-migration/zipball/70c89850ca29c2eab988c7c3475d1d5331901bb8",
             "reference": "70c89850ca29c2eab988c7c3475d1d5331901bb8",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
+            "shasum": ""
         },
         "require": {
             "topthink/framework": "5.1.*"
@@ -200,5 +309,52 @@
                 "email": "448901948@qq.com"
             }
         ]
+    },
+    {
+        "name": "weiwei/api-doc",
+        "version": "1.6.1",
+        "version_normalized": "1.6.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zhangweiwei0326/api-doc.git",
+            "reference": "8f373e8eec8a8876aed8057889721e539f957737"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zhangweiwei0326/api-doc/zipball/8f373e8eec8a8876aed8057889721e539f957737",
+            "reference": "8f373e8eec8a8876aed8057889721e539f957737",
+            "shasum": ""
+        },
+        "require": {
+            "topthink/think-helper": ">=1.0.4",
+            "topthink/think-installer": ">=1.0.10"
+        },
+        "time": "2018-06-04T08:09:16+00:00",
+        "type": "think-extend",
+        "extra": {
+            "think-config": {
+                "doc": "src/config.php"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Api\\Doc\\": "src"
+            },
+            "files": [
+                "src/helper.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "weiwei",
+                "email": "1763692101@qq.com"
+            }
+        ],
+        "description": "The ThinkPHP5 Api Doc Package"
     }
 ]

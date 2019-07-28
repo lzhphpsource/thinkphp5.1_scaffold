@@ -121,7 +121,8 @@ $(function(){
 			indexbody.find('#mainframe').attr("src",new_src);
 		}
 	});
-		//商城商品管理 是否开启分拥
+
+	//商城商品管理 是否开启分拥
 	$(".brand-list .select-items ul li").click(function(){
 		common_click();
 		var index=	$(this).index();

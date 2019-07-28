@@ -48,11 +48,11 @@
 			<span class="txtc9">版权所有 后台管理系统 Copyright © 2016 - 2020</span>
 		</div>
 			<script>
-			$(function() {
-				$("#captcha").on('click', function() {
-					$(this).attr("src","{:url('login/verify')}?&"+Math.random());
+				$(function() {
+					$("#captcha").on('click', function() {
+						$(this).attr("src","{:url('login/verify')}?&"+Math.random());
+					});
 				});
-			});
-		</script>
+			</script>
 	</body>
 </html>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import KeRouter from '~/utils/vue-ke-router'
-import Index from '../routes/index'
+import Index from '../routes'
 
 Vue.use(VueRouter)
 

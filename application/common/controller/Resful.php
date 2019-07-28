@@ -10,6 +10,7 @@ namespace app\common\controller;
 
 use think\App;
 use think\Container;
+use think\exception\ValidateException;
 use think\Request;
 
 class Resful
@@ -55,38 +56,43 @@ class Resful
         if ($valid->check($data)) {
             return true;
         } else {
-            return $valid->getError();
+            throw new ValidateException($valid->getError()); // TODO 这里应该抛出异常
         }
     }
 
+    /**
+    业务状态码：
+    正常响应	200～299	200	表示接口服务正常响应
+    重定向	300～399	300	表示重定向，对应异常类RedirectException的异常码
+    非法请求	400～499	400	表示客户端请求非法，对应异常类BadRequestException的异常码
+    服务器错误	500～599	500	表示服务器内容错误，对应异常类InternalServerErrorException的异常码
+     */
 
     /**
      * 返回错误接口数据
-     * @param string $msg
-     * @param int $errCode
+     *
+     * @param string $message
+     * @param int $bzCode
+     * @param int $httpCode
      * @return \think\response\Json
      */
-    protected function error($msg, $errCode = 200)
+    protected function error($message, $bzCode = 200, $httpCode = 200)
     {
-        $result = ['error'=>$msg];
-        return json($result, $errCode);
+        return apiResult($bzCode,$message,[], $httpCode);
     }
 
     /**
      * 返回成功接口数据
+     *
      * @param array $data
-     * @param integer $code
+     * @param string $message
+     * @param int $bzCode
+     * @param int $httpCode
      * @return \think\response\Json
      */
-    protected function success($data = [], $code = 200)
+    protected function success($data, $message = '', $bzCode = 200, $httpCode = 200)
     {
-        $result = ['code'=>1];
-        if (!empty($data)) {
-            $result = array_merge($result, $data);
-        }
-        return json($result, $code);
+        return apiResult($bzCode,$message,$data,$httpCode);
     }
-
-
 
 }

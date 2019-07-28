@@ -8,42 +8,39 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const UglifyPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader')
 const VueConfig = require('./vue.config.js')
 
-const assetsSubDirectory = process.env.NODE_ENV === 'prop'
-    ? config.build.assetsSubDirectory
-    : config.dev.assetsSubDirectory
-
-function getEntry(globPath, dir) {
-    let entries = {},
-        basename, tmp, pathname;
-    console.log(dir)
+function getEntry(globPath, dir=false) {
+    let entries = {}, pathname;
+    //console.log(dir)
 
     glob.sync(globPath).forEach(function (entry) {
         // console.log(path.parse(entry))
         let ext = path.extname(entry)
         let tmp = path.parse(entry)
         if (dir) {
-            pathname = tmp.dir.split('/').splice(-1)
+            pathname = tmp.dir.split('/').splice(-2)[0]
         } else {
-            pathname = tmp.dir.split('/').splice(-1) + '/' + tmp.name; // 正确输出js和html的路径
+            pathname = tmp.dir.split('/').splice(-2)[0] + '/' + tmp.name; // 正确输出js和html的路径
         }
         entries[pathname] = entry;
     });
     return entries;
 }
-let entrys = getEntry('./application/*/index.js', true)
+
+let entrys = getEntry('./application/*/view/main.js', true)
 const ouputFile = process.env.NODE_ENV === 'dev' ? '[name].js' : '[name].[chunkhash:8].js'
 
 module.exports = {
-    devtool: process.env.NODE_ENV === 'dev' ? 'cheap-module-eval-source-map' : '#source-map',
+    context: path.resolve(__dirname, '../'), // 定位到项目根目录
+    devtool: process.env.NODE_ENV === 'dev' ? config.dev.devtool : config.build.devtool,
     entry: entrys,
     mode: process.env.NODE_ENV === 'dev' ? 'development' : 'production',
     output: {
-        path: path.join(__dirname, process.env.NODE_ENV === 'dev' ? './dist' : config.build.staticPath),
-        publicPath: process.env.NODE_ENV === 'dev' ? config.assetsPublicPath : config.assetsPublicPath + config.assetsSubDirectory + '/',
+        path: config.build.staticPath,
+        publicPath: process.env.NODE_ENV === 'dev' ? config.dev.assetsPublicPath : config.build.assetsPublicPath+config.build.assetsSubDirectory+'/',
         filename: 'js/' + ouputFile,
         chunkFilename: process.env.NODE_ENV === 'dev' ? 'js/[name].[chunkhash:8].js' : 'js/[name].[chunkhash:8].js'
     },
@@ -61,6 +58,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 use: ['babel-loader'],
+                // 包含webpack/src目录下js文件
                 include: [path.join(__dirname, './src'), path.join(__dirname, '../application')],
                 exclude: /node_modules/
             },
@@ -82,7 +80,7 @@ module.exports = {
                 use: [{
                     loader: 'url-loader',
                     options: {
-                        limit: 10000,  //8k一下的转义为base64
+                        limit: 10000,  //8k以下的转义为base64
                         name: 'images/[name].[hash:7].[ext]'
                     }
                 }]
@@ -96,7 +94,7 @@ module.exports = {
                 }
             }
         ].concat(utils.styleLoaders({
-            sourceMap: config.build.productionSourceMap,
+            sourceMap: process.env.NODE_ENV === 'prop' ? config.build.productionSourceMap:config.dev.cssSourceMap,
             extract: process.env.NODE_ENV === 'prop',
             usePostCSS: true
         }))
@@ -119,8 +117,8 @@ module.exports = {
     optimization: {
         minimize: process.env.NODE_ENV === 'prop',
         minimizer: process.env.NODE_ENV === 'prop' ? [
-            new UglifyPlugin({
-                uglifyOptions: {
+            new TerserPlugin({
+                terserOptions: {
                     compress: {
                         // turn off flags with small gains to speed up minification
                         arrows: false,
@@ -152,9 +150,7 @@ module.exports = {
                         dead_code: true,
                         evaluate: true
                     },
-                    mangle: {
-                        safari10: true
-                    }
+                    safari10: true
                 },
                 sourceMap: config.build.productionSourceMap,
                 cache: true,
@@ -173,21 +169,20 @@ module.exports = {
     }
 }
 
-
-
 // 调试服务器
 if (process.env.NODE_ENV === 'dev') {
     module.exports.devServer = {
         host: config.dev.host,
         port: config.dev.port,
-        contentBase: process.env.NODE_ENV === 'dev' ? './dist' : config.build.templatePath,
+        contentBase: false,
+        publicPath: config.dev.assetsPublicPath,
         historyApiFallback: {
             rewrites: [
                 { from: /^\/$/, to: '/index/index.html' },
                 { from: /^\/(\w+)/, to: '/$1/index.html' }
             ]
         },
-        compress: true,
+        compress: true, //是否启用gzip压缩
         inline: true,
         clientLogLevel: 'warning',
         hot: true,
@@ -200,12 +195,13 @@ if (process.env.NODE_ENV === 'dev') {
     }
 }
 
-let pages = getEntry('./application/*/index.html');
+let pages = getEntry('./application/*/view/index.html');
 
 for (let pathname in pages) {
     // 配置生成的html文件，定义路径等
     let conf = {
-        filename: process.env.NODE_ENV === 'dev' ? pathname + '.html' : path.join(__dirname, config.build.templatePath, pathname + '.html'),
+        // 模块页面输出路径为public目录
+        filename: process.env.NODE_ENV === 'dev' ? pathname + '.html' : config.build.templatePath + '/' + pathname + '.html',
         template: pages[pathname], // 模板路径
         chunks: ['common', pathname.split('/')[0]], // 每个html引用的js模块
         inject: true              // js插入位置
@@ -230,7 +226,7 @@ if (process.env.NODE_ENV === 'prop') {
             fs.rmdirSync(path);
         }
     }
-    deleteFolderRecursive(path.join(__dirname, config.build.staticPath))
+    deleteFolderRecursive(config.build.staticPath)
 } else {
     module.exports.plugins.push(new webpack.HotModuleReplacementPlugin())
 }
@@ -238,8 +234,9 @@ if (process.env.NODE_ENV === 'prop') {
 module.exports.plugins.push(
     new CopyWebpackPlugin([
         {
-            from: path.resolve(__dirname, '../resources'),
-            to: process.env.NODE_ENV === 'dev' ? 'static' : '',
+            // 复制resources目录下所有子目录
+            from: path.join(__dirname, '../resources'),
+            to: process.env.NODE_ENV === 'dev' ? config.dev.assetsSubDirectory : config.build.staticPath,
             ignore: ['.*']
         }
     ])

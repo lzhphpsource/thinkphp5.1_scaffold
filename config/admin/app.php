@@ -13,7 +13,7 @@ return [
     // +----------------------------------------------------------------------
 
     // 后台默认认证网关
-    'user_auth_gateway'  => 'Admin/Login/index',
+    'user_auth_gateway'  => 'admin/login/index',
     // 管理员用户key
     'user_adminauth_key' => 'admin|15210455141',
     // 超级管理员用户ID

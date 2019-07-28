@@ -19,7 +19,7 @@ function is_login(){
         return 0;
 
     } else {
-
+        // 如果用户登录，但信息修改，则登录作废
         return session('auth_login_sign') == data_auth_sign($user) ? $user['LoginId'] : 0;
 
     }
@@ -91,7 +91,7 @@ function data_auth_sign($data)
 
     $code = http_build_query($data); //url编码并生成query字符串
 
-    $sign = sha1($code); //生成签名
+    $sign = sha1($code); //生成签名，TODO 加密强度不够
 
     return $sign;
 
@@ -249,7 +249,7 @@ function getRootUrl()
 
 
 
-define ("DEBUG_MODE", true);
+// define ("DEBUG_MODE", true);
 // 应用公共文件
 /**
  * [get_config_type 获取配置的类型]

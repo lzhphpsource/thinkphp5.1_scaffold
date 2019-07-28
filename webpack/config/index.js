@@ -5,24 +5,25 @@
 const path = require('path')
 
 module.exports = {
-    // 静态文件根目录
-    assetsPublicPath: '/',
-    // 静态文件目录
-    assetsSubDirectory: 'vueStatic',
 
     dev: {
 
-        // 是否自动打开浏览器
+        // 静态文件根目录
+        assetsPublicPath: '/',
+        // 静态文件目录
+        assetsSubDirectory: 'vueStatic',
+
+        // 是否自动打开浏览器 TODO ??
         open: false,
         // 调试服务器主机名
-        host: '127.0.0.1', // can be overwritten by process.env.HOST
+        host: 'localhost', // can be overwritten by process.env.HOST
         // 调试服务器端口
         port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
 
         // 代理到后端
         proxyTable: {
             '/api': {
-                target: 'http://tpvue.test.kecms.cn:3030/',
+                target: 'http://demo.thinkphp.cn/',
                 ws: true,
                 changeOrigin: true
                 /*
@@ -45,9 +46,9 @@ module.exports = {
 
     build: {
         // 模板编译保存目录
-        templatePath: '../public',
+        templatePath: path.resolve(__dirname,'../../public'),
         // 静态文件编译保存目录
-        staticPath: '../public/vueStatic',
+        staticPath: path.resolve(__dirname,'../../public/vueStatic'),
 
         assetsPublicPath: '/',
         assetsSubDirectory: 'vueStatic',

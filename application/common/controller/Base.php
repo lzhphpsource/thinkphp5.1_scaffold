@@ -12,6 +12,7 @@ use think\Controller;
 use think\facade\Config;
 use app\common\model\Member as MemberModel;
 use think\facade\Env;
+
 class Base extends Controller {
     protected $url;
     protected $request;
@@ -20,8 +21,9 @@ class Base extends Controller {
     protected $action;
     protected $config;
     public static $logIndex = 1;
+
 	public function initialize() {
-        parent::initialize();
+        //parent::initialize(); // TODO 这没有用
         //halt(123);
        // exit(json_encode(['code'=>0,'msg'=>'项目更新，敬请期待']));
 		header("Content-Type: Text/Html;Charset=UTF-8");
@@ -36,14 +38,14 @@ class Base extends Controller {
         // 	$config['oss_enable']=0;
         // }
         Config::set($config);
+        // 用户模型
         $this->member_model = new MemberModel();
 	}
 
-
-	/**
-	 * request信息
-	 * @return [type] [description]
-	 */
+    /**
+     * 从request中获取信息并存储到控制器中
+     * @return mixed
+     */
 	protected function requestInfo() {
 		$this->param =  $this->request->param();
 
@@ -54,7 +56,7 @@ class Base extends Controller {
 		defined('IS_AJAX') or define('IS_AJAX', $this->request->isAjax());
 		defined('IS_GET') or define('IS_GET', $this->request->isGet());
 //		//获取当前地址
-//        $this->assign('full_url', $this->request->url());//完整url
+//      $this->assign('full_url', $this->request->url());//完整url
 //		$this->assign('request', $this->request);
 //		$this->assign('param', $this->param);
 
@@ -64,9 +66,11 @@ class Base extends Controller {
         return $this->full_url=$this->request->url(true);//完整url
 	}
 
-	/**
-	 * 获取单个参数的数组形式
-	 */
+    /**
+     * 获取单个参数的数组形式
+     * @param $param
+     * @return array
+     */
 	protected function getArrayParam($param) {
 		if (isset($this->param['id'])) {
 			return array_unique((array) $this->param[$param]);
@@ -75,9 +79,10 @@ class Base extends Controller {
 		}
 	}
 
-	/**
-	 * [log 日志打印]
-	 */
+    /**
+     * 日志打印
+     * @param $text
+     */
     public function log($text) {
     	//是否打印日志
         if(!Config::get('app_debug')){
@@ -112,7 +117,8 @@ class Base extends Controller {
     }
 
     /**
-     * 创建文件夹
+     * 创建文件夹，可递归打印多层目录
+     *
      * @param type $dir
      * @return boolean
      */

@@ -1,24 +1,22 @@
 <?php
-// 公共Builder表单构建器控制器
-// +----------------------------------------------------------------------
-// | PHP version 5.6+
-// +----------------------------------------------------------------------
-// | Copyright (c) 2012-2014 http://www.bcahz.com, All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: White to black <973873838@qq.com>
-// +----------------------------------------------------------------------
-// | 原作者：心云间、凝听
-// +----------------------------------------------------------------------
+
+/**
+ * 公共Builder表单构建器控制器
+ *
+ * Created by PhpStorm.
+ * User: LZH
+ * Date: 2019/7/4
+ * Time: 15:10
+ */
 namespace app\admin\builder;
-use app\admin\builder\AdminBuilder;
 
 class AdminFormBuilder extends AdminBuilder
 {
     private $_meta_title;            // 页面标题
     private $_tab_nav = array();     // 页面Tab导航
-    private $_group_tab_nav=array(); //页面Tab导航
+    private $_group_tab_nav=array(); // 页面Tab导航
     private $_post_url;              // 表单提交地址
-    private $_buttonList = array();    //按钮组
+    private $_buttonList = array();  // 按钮组
     private $_form_items = array();  // 表单项目
     private $_extra_items = array(); // 额外已经构造好的表单项目
     private $_form_data = array();   // 表单数据
@@ -27,8 +25,9 @@ class AdminFormBuilder extends AdminBuilder
 
     /**
      * 设置页面标题
-     * @param $title 标题文本
-     * @return $this    
+     *
+     * @param $meta_title 标题文本
+     * @return $this
      */
     public function setMetaTitle($meta_title) {
         $this->_meta_title = $meta_title;
@@ -37,6 +36,7 @@ class AdminFormBuilder extends AdminBuilder
 
     /**
      * 设置Tab按钮列表
+     *
      * @param $tab_list    Tab列表  array('title' => '标题', 'href' => 'http://www.xxx.com')
      * @param $current_tab 当前tab
      * @return $this
@@ -45,8 +45,10 @@ class AdminFormBuilder extends AdminBuilder
         $this->_tab_nav = array('tab_list' => $tab_list, 'current_tab' => $current_tab);
         return $this;
     }
+
     /**
      * 组tab
+     *
      * @param $tab_list    Tab列表  array('title' => '标题', 'href' => 'http://www.xxx.com')
      * @param $current_tab 当前tab
      * @return $this
@@ -56,11 +58,12 @@ class AdminFormBuilder extends AdminBuilder
         return $this;
     }
 
-    /**插入配置分组
+    /**
+     * 插入配置分组,即tab面板组
+     *
      * @param       $name 组名
      * @param array $list 组内字段列表
      * @return $this
-     * @auth 肖骏涛
      */
     public function group($name, $list = array())
     {
@@ -69,6 +72,12 @@ class AdminFormBuilder extends AdminBuilder
         return $this;
     }
 
+    /**
+     * 批量插入分组,即tab面板组
+     *
+     * @param array $list
+     * @return $this
+     */
     public function groups($list = array())
     {
         foreach ($list as $key => $v) {
@@ -76,9 +85,11 @@ class AdminFormBuilder extends AdminBuilder
         }
         return $this;
     }
+
     /**
      * 直接设置表单项数组
-     * @param $form_items 表单项数组
+     *
+     * @param $extra_items 表单项数组
      * @return $this
      */
     public function setExtraItems($extra_items) {
@@ -88,7 +99,8 @@ class AdminFormBuilder extends AdminBuilder
 
     /**
      * 设置表单提交地址
-     * @param $url 提交地址
+     *
+     * @param $post_url 提交地址
      * @return $this
      */
     public function setPostUrl($post_url) {
@@ -98,14 +110,15 @@ class AdminFormBuilder extends AdminBuilder
 
     /**
      * 加入一个表单项
+     *
      * @param $name 表单名
-     * @param $type 表单类型(取值参考系统配置FORM_ITEM_TYPE)
-     * @param $title 表单标题
-     * @param $tip 表单提示说明
-     * @param $options 表单options
-     * @param $confirm 表单验证
-     * @param $extra_class 表单项是否隐藏
-     * @param $extra_attr 表单项额外属性
+     * @param string $title 表单类型(取值参考系统配置FORM_ITEM_TYPE)
+     * @param string $tip 表单标题
+     * @param string $type 表单提示说明
+     * @param array $options 表单options
+     * @param string $confirm 表单验证
+     * @param string $extra_attr 表单项是否隐藏
+     * @param string $extra_class 表单项额外属性
      * @return $this
      */
     public function addFormItem($name, $title='', $tip='',$type='text',$options = array(),$confirm='',$extra_attr = '',$extra_class = '') {
@@ -122,7 +135,8 @@ class AdminFormBuilder extends AdminBuilder
     }
 
     /**
-     * 设置表单表单数据
+     * 设置表单数据
+     *
      * @param $form_data 表单数据
      * @return $this
      */
@@ -133,6 +147,7 @@ class AdminFormBuilder extends AdminBuilder
 
     /**
      * 设置额外功能代码
+     *
      * @param $extra_html 额外功能代码
      * @return $this
      */
@@ -140,10 +155,12 @@ class AdminFormBuilder extends AdminBuilder
         $this->_extra_html = $extra_html;
         return $this;
     }
+
     /**
      * 公共按钮方法
-     * @param  $title 按钮标题
-     * @param  $attr 按钮属性
+     *
+     * @param $title 按钮标题
+     * @param array $attr 按钮属性
      * @return $this
      */
     public function button($title, $attr = array())
@@ -151,13 +168,15 @@ class AdminFormBuilder extends AdminBuilder
         $this->_buttonList[] = array('title' => $title, 'attr' => $attr);
         return $this;
     }
+
     /**
-    *添加按钮
-    *@param $type 按钮类型
-    *@param $title 按钮标题
-    *@param $title 提交地址
-    *@return $this
-    */
+     * 添加按钮
+     *
+     * @param string $type 按钮类型
+     * @param string $title 按钮标题
+     * @param string $url 提交地址
+     * @return AdminFormBuilder
+     */
     public function addButton($type='submit',$title='',$url=''){
         switch ($type) {
             case 'submit'://确认按钮
@@ -209,21 +228,26 @@ class AdminFormBuilder extends AdminBuilder
         }
         return $this->button($title, $attr);
     }
+
     /**
      * 设置提交方式
-     * @param $title 标题文本
+     *
+     * @param bool $ajax_submit
      * @return $this
      */
     public function setAjaxSubmit($ajax_submit = true) {
         $this->_ajax_submit = $ajax_submit;
         return $this;
     }
+
     /**
-     * @param  string $templateFile 模板名
-     * @param  array $vars 模板变量
-     * @param  string $replace
-     * @param  string $config
-     * @return parent::fetch('formbuilder');
+     * 渲染并显示页面
+     *
+     * @param string $templateFile 模板名
+     * @param array $vars 模板变量
+     * @param string $replace
+     * @param string $config
+     * @return mixed|void
      */
     public function fetch($templateFile='',$vars =array(), $replace ='', $config = '') {
         //额外已经构造好的表单项目与单个组装的的表单项目进行合并

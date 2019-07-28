@@ -2,13 +2,13 @@
 	{load href="__BASE__/css/group.css" /} 
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="viewFramework-sidebar-manage ng-scope">
+			<div class="viewFramework-sidebar-manage">
 				<div class="modal-header">
-					<button type="button" class="close">×</button>
-					<h5 class="modal-title ng-binding">用户权限授权</h5>
+					<!--<button type="button" class="close">×</button>-->
+					<h5 class="modal-title">用户权限授权</h5>
 				</div>
 				<div class="modal-body">
-					<div class="sidebar-config-title ng-binding">
+					<div class="sidebar-config-title">
 						已拥有权限分组:
 					</div>
 					<form id="GroupForm" action="{:url('Member/groupAuth')}" method="POST">
@@ -16,7 +16,7 @@
 						{notempty name="userGroup"}
 							<div class="sidebar-item-list sidebar-item-list-picked clearfix">
 								 {foreach name="userGroup" item="vo" key="k" }
-								   <div class="sidebar-item-wrap ng-scope">
+								   <div class="sidebar-item-wrap">
 										<div class="sidebar-item">
 											<span class="sidebar-item-icon">&nbsp;</span>
 											</span><span class="sidebar-item-text ng-binding">{$vo.title}&nbsp;</span><span class="sidebar-item-opt-icon icon-no"></span>
@@ -33,16 +33,16 @@
 					</form>
 					<div class="sidebar-config-gap">
 					</div>
-					<div class="sidebar-config-title ng-binding">
+					<div class="sidebar-config-title">
 						可添加权限分组:
 					</div>
 					<div class="sidebar-item-list sidebar-item-list-picked-2 clearfix">
 						 {foreach name="authgroup" item="vo" key="k" }
 						    <!-- ngRepeat: item in allItems track by $index -->
-							<div class="sidebar-item-wrap ng-scope">
+							<div class="sidebar-item-wrap">
 								<div class="sidebar-item" title="{$vo.description}">
 									<span class="sidebar-item-icon">&nbsp;</span>
-									</span><span class="sidebar-item-text ng-binding">{$vo.title}&nbsp;</span><span class="sidebar-item-opt-icon icon-add"></span>
+									</span><span class="sidebar-item-text">{$vo.title}&nbsp;</span><span class="sidebar-item-opt-icon icon-add"></span>
 								</div>
 								<input type="hidden" name="group_access" value="{$uid},{$vo.id}">
 								

@@ -9,4 +9,5 @@ return [
 
     // 控制器类后缀
     'controller_suffix'      => true,
+    'exception_handle'       => '\app\common\exception\ApiHandleException',
 ];

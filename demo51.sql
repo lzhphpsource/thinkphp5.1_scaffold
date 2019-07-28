@@ -88,7 +88,7 @@ INSERT INTO `hd_auth_rule` VALUES (129, '/admin/member/index', '会员管理', 1
 INSERT INTO `hd_auth_rule` VALUES (130, '/admin/member/userList', '会员列表', 1, '', '', 1, '', 1, 129, 4, 1527299741, 1510903840, 1);
 INSERT INTO `hd_auth_rule` VALUES (155, '/admin/Access', '权限', 1, '', '', 1, '', 99, 112, 2, 1538100786, 1510905487, 1);
 INSERT INTO `hd_auth_rule` VALUES (156, '/admin/access/index', '权限管理', 1, '', '', 1, '', 0, 155, 3, 1510905515, 1510905515, 1);
-INSERT INTO `hd_auth_rule` VALUES (157, '/admin/access/authlist', '管理列表', 1, '', '', 1, '', 1, 156, 4, 1511254157, 1510905538, 1);
+INSERT INTO `hd_auth_rule` VALUES (157, '/admin/access/authlist', '管理员列表', 1, '', '', 1, '', 1, 156, 4, 1511254157, 1510905538, 1);
 INSERT INTO `hd_auth_rule` VALUES (158, '/admin/access/rolelist', '角色管理', 1, '', '', 1, '', 4, 156, 4, 1519893513, 1510905567, 1);
 INSERT INTO `hd_auth_rule` VALUES (159, '/admin/access/nodelist', '节点列表', 1, '', '', 1, '', 8, 156, 4, 1511254459, 1510905590, 1);
 INSERT INTO `hd_auth_rule` VALUES (161, '/admin/system/saveallconfig', '提交设置', 1, '', '', 1, '', 2, 120, 4, 1511231152, 1511230376, 0);

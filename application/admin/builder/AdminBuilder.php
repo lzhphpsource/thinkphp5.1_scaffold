@@ -1,16 +1,12 @@
 <?php
-// Buider公有控制器
-// +----------------------------------------------------------------------
-// | PHP version 5.6+
-// +----------------------------------------------------------------------
-// | Copyright (c) 2012-2014 http://www.bcahz.com, All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: White to black <973873838@qq.com>
-// +----------------------------------------------------------------------
-// | 原作者：心云间、凝听
-// +----------------------------------------------------------------------
+/**
+ * Created by PhpStorm.
+ * User: LZH
+ * Date: 2019/7/4
+ * Time: 15:10
+ */
+
 namespace app\admin\builder;
-use think\Controller;
 use app\common\controller\Base;
 
 /**
@@ -21,6 +17,15 @@ use app\common\controller\Base;
  */
 abstract class AdminBuilder extends Base
 {
+    /**
+     * 解析和获取模板内容 用于输出
+     *
+     * @param string $templateFile 模板文件名称
+     * @param array $vars
+     * @param string $replace
+     * @param string $config
+     * @return mixed|void
+     */
     public function fetch($templateFile='',$vars =array(), $replace ='', $config = '') {
         //获取模版的名称
         //$template ='Builder/'.$templateFile;
@@ -31,6 +36,12 @@ abstract class AdminBuilder extends Base
          echo parent::fetch('/builder/' . $templateFile);
     }
 
+    /**
+     * 组装html节点属性
+     *
+     * @param $attr 包含属性键值对的数组
+     * @return array|string
+     */
     protected function compileHtmlAttr($attr) {
         if (!is_array($attr)) {
             return '';
@@ -38,7 +49,7 @@ abstract class AdminBuilder extends Base
         $result = array();
 
         foreach($attr as $key=>$value) {
-            $value = htmlspecialchars($value);
+            $value = htmlspecialchars($value); // 转义特殊字符
             $result[] = "$key=\"$value\"";
         }
         $result = implode(' ', $result);

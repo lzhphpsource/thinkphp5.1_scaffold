@@ -1,6 +1,6 @@
 {
-    "name": "topthink/think",
-    "description": "the new thinkphp framework",
+    "name": "liaozh/thinkphp5.1_scaffold",
+    "description": "the thinkphp framework scaffold",
     "type": "project",
     "keywords": [
         "framework",
@@ -11,15 +11,17 @@
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "liu21st",
-            "email": "liu21st@gmail.com"
+            "name": "lzh",
+            "email": "liao06550107@gmail.com"
         }
     ],
     "require": {
         "php": ">=5.6.0",
         "topthink/framework": "5.1.*",
         "topthink/think-captcha": "^2.0",
-        "topthink/think-migration": "^2.0"
+        "topthink/think-migration": "^2.0",
+        "weiwei/api-doc": "^1.6",
+        "liaozh/api-doc": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -31,5 +33,11 @@
     },
     "config": {
         "preferred-install": "dist"
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/api-doc"
+        }
+    ]
 }

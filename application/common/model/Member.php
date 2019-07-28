@@ -12,6 +12,7 @@ use think\Image;
 
 class Member extends Base
 {
+
     // 定义时间戳字段名
     protected $createTime = 'register_time';
     protected $updateTime = 'login_time';
@@ -70,16 +71,17 @@ class Member extends Base
     {
         return time();
     }
-    
+
     /**
-     * [login 后端用户登录认证]
-     * @param  [string]  $loginId  [登录ID]
-     * @param  [string]  $password [用户密码]
-     * @param  [int]     $type     [用户名类型 （1-用户编号, 2-用户账户, 3-手机, 4-用户昵称, 5-用户邮件, 6-全部）]
-     * @return [int]               [登录成功-用户ID，登录失败-错误编号]
+     * login 后端用户登录认证
+     *
+     * @param $loginId 登录ID
+     * @param $password 用户密码
+     * @param int $type 用户名类型 （1-用户编号, 2-用户账户, 3-手机, 4-用户昵称, 5-用户邮件, 6-全部）
+     * @param string $source 用户登录来源
+     * @return bool|int 登录成功-用户ID，登录失败-错误编号
      */
     public function login($loginId, $password, $type = 6, $source = "pc"){
-        $sqlmap = [];
         switch ($type) {
             case 2:
                 $sqlmap = 'username';
@@ -105,7 +107,7 @@ class Member extends Base
                 return -2; //用户被禁用
             }
             /* 验证用户密码 */
-            if(md5($password) === $member['password']){
+            if(md5($password) === $member['password']){ // TODO 加密强度不够
 
                 $this->autoLogin($member, $source); //更新用户登录信息
 
@@ -121,8 +123,11 @@ class Member extends Base
     }
 
     /**
-     * [autoLogin 更新用户登录信息]
-     * @param  [array] $user [用户数组]
+     * 自动登录，更新用户登录信息
+     *
+     * @param $member 用户数组
+     * @param $source 用户登录来源
+     * @return bool
      */
     private function autoLogin($member, $source){
         if (is_array($member)) {
@@ -154,7 +159,8 @@ class Member extends Base
         session('user_auth_session', $authLogin);
 
         session('auth_login_sign', $auth_login_sign);
-        
+
+        // TODO 没有cookie 实现记住我
     }
 
 }

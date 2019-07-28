@@ -25,7 +25,7 @@ export default class KeRouter {
         const s = this.data.push({
             name: name,
             path: rule,
-            component: () => import(`../../../application/${this.$module}/view/${path}.vue`)
+            component: () => import(`../../../application/${this.$module}/view/components/${path}.vue`)
         })
         this.curr = s - 1
         if (this.$options) {

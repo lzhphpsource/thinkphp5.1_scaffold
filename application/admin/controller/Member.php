@@ -23,9 +23,9 @@ class Member extends Admin
         $this->authgroup = new AuthGroup();
         $this->auth_group_access = new AuthGroupAccess();
     }
+
     /**
-     * [userlist 用户列表]
-     * @return [type] [description]
+     * 显示用户列表
      */
     public function userlist()
     {
@@ -35,7 +35,7 @@ class Member extends Admin
         $builder   = new AdminListBuilder();
         $builder->setMetaTitle('会员列表') // 设置页面标题
             ->setSearch('用户名/手机号','') //如果链接变量,直接写在第二个参数里
-        ->addTopButton('self',array('title'=>'导出数据','href'=>url(MODULE_NAME.'/'.CONTROLLER_NAME.'/expMember')))
+            ->addTopButton('self',array('title'=>'导出数据','href'=>url(MODULE_NAME.'/'.CONTROLLER_NAME.'/expMember')))
             ->addTopButton('addnew',['href'=>url('userAdd')])  // 添加新增按钮
             ->addTopButton('all')  // 添加新增按钮
             ->addTopButton('delete',array('model'=>'member'))
@@ -49,20 +49,21 @@ class Member extends Admin
             ->keyListItem('right_button', '操作', 'btn')
             ->setListData($data_list) // 数据列表
             ->setListPage($data_list->render()) // 数据列表分页
-            ->addRightButton('edit',['href'=>url('userEdit',array('id'=>'__data_id__')),'title'=>'操作'])
+            ->addRightButton('edit',['href'=>url('userEdit',array('id'=>'__data_id__')),'title'=>'编辑'])
             ->addRightButton('self',['href'=>'javascript:;','data-url'=>url('Member/groupAuth',array('id'=>'__data_id__')),'group-url'=>url('Member/groupAuth'),'class'=>"btn-xs btn-link groupAuth",'title'=>'授权'])// 添加失效按钮
             ->addRightButton('delete',array('model'=>'member'))
             ->fetch();
     }
 
     /**
-     * 导出用户
+     * 导出用户信息到excel表中
      */
     public function expMember()
     {
         $keyword =isset($this->param['keyword']) ? $this->param['keyword']:false;
         $data_list = $this->member_model->where('username|mobile','like','%'.$keyword.'%')->order('register_time desc, id desc')->select();
         if(!count($data_list))  $this->error('暂无数据');
+
         $title = '所有用户列表';
         $filename   = '所有用户列表'.$title.Date('YmdHis');
 
@@ -86,10 +87,8 @@ class Member extends Admin
         exportExcel($data_array,false,$filename);
     }
 
-
     /**
-     * [userAdd 新增用戶]
-     * @return [type] [description]
+     * 新增用戶
      */
     public function userAdd()
     {
@@ -112,6 +111,8 @@ class Member extends Admin
                 if(!$addUser_validate->scene('addUser')->check($data)){
                     $this->error($addUser_validate->getError());
                 }
+
+                // TODO 这里搞什么节目
                 Db::startTrans();
                 try {
 
@@ -121,7 +122,7 @@ class Member extends Admin
                       $this->error($this->member_model->getError());
                     }
                     Db::commit();
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     Db::rollback();
                     $this->error($e->getMessage());
                     exit;
@@ -133,7 +134,7 @@ class Member extends Admin
         } else {
             $info    =[];
             $info['status'] = 1;
-            $info['demo7'] = 123456789;
+            $info['demo7'] = 123456789; // TODO 这是搞什么节目
             $builder = new AdminFormBuilder();
             $builder->setMetaTitle('新增用户') // 设置页面标题
                     ->addFormItem('username', '用户登录名','请填写用户登录名','text','','required')
@@ -149,11 +150,10 @@ class Member extends Admin
         }
     }
 
-
     /**
-     * [userEdit 编辑会员]
-     * @param  [type] $id [description]
-     * @return [type]     [description]
+     * 编辑会员
+     *
+     * @param string $id
      */
     public function userEdit($id='')
     {
@@ -167,6 +167,7 @@ class Member extends Admin
                 $this->error($addUser_validate->getError());
             }
 
+            // TODO 这里搞什么节目
             Db::startTrans();
             try {
                 $id = $data['id'];
@@ -192,9 +193,9 @@ class Member extends Admin
             $this->success('编辑成功！',url('Member/userList'));
         } else {
             $map['id']=$id;
-            $info=[];
             $info = $this->member_model->where($map)->find();
             unset($info['password']);
+
             $builder = new AdminFormBuilder();
             $builder->setMetaTitle('编辑用戶') // 设置页面标题
                     ->addFormItem('id', '','','hidden')
@@ -216,12 +217,11 @@ class Member extends Admin
     }
 
     /**
-     * [resetPassword 修改密码]
-     */  
+     * 修改密码
+     */
     public function resetPassword()
     {
         if (IS_POST) {
-            //$oldpassword=I('post.oldpassword',false);
             $newpassword=$this->param['newpassword'];
             $repassword=$this->param['repassword'];
             if ($newpassword==$repassword) {
@@ -229,6 +229,7 @@ class Member extends Admin
                 $new_password=md5($newpassword);
                 $res=$this->member_model->where(array('id'=>$uid))->setField('password',$new_password);
                 if ($res) {
+                    // 清空会话和cookie信息并让用户重新登录
                     session(null);
                     cookie(null);
                     $this->success('密码修改成功', url('Admin/login/index'));
@@ -237,6 +238,7 @@ class Member extends Admin
         }else {
             // 获取账号信息
             $info = $this->member_model->where(array('id'=>is_login()))->find();
+
             // 使用FormBuilder快速建立表单页面。
             $builder = new AdminFormBuilder();
             $builder->setMetaTitle('修改密码')
@@ -249,7 +251,8 @@ class Member extends Admin
     }
 
     /**
-     * [groupAuth 更改用户权限]
+     * 更改用户权限
+     * @return array|mixed
      */
     public function groupAuth()
     {
@@ -295,7 +298,7 @@ class Member extends Admin
             }
             $userGroupData = $this->auth_group_access->where(array('uid'=>$id))->select();
             
-            $userGroup=[];
+            $userGroup=[]; // 收集用户所属的组
             foreach ($userGroupData as $k => $v) {
                 foreach ($authGrouData as $key => $value) {
                     if ($value['id'] == $v['group_id']) {

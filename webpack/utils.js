@@ -1,6 +1,5 @@
 'use strict'
 const path = require('path')
-const config = require('./config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
 
@@ -64,6 +63,7 @@ exports.cssLoaders = function (options) {
 }
 
 // Generate loaders for standalone style files (outside of .vue)
+// 就是为不在vue中定义的样式生成的加载器
 exports.styleLoaders = function (options) {
     const output = []
     const loaders = exports.cssLoaders(options)

@@ -13,8 +13,9 @@ use app\admin\builder\AdminFormBuilder;
 class Demo extends Admin
 {
     public function demoList(){
+        // 这是按名称检索
         $keyword =isset($this->param['keyword']) ? $this->param['keyword']:false;
-        $condition=[];
+        $condition=[]; // 收集检索字段
         if($keyword){
             $condition['name'] = ['like','%'.$keyword.'%'];
 
@@ -26,6 +27,8 @@ class Demo extends Admin
             $value['demo_time'] = time();
             $value['array'] = 1;
         }
+
+        // 根据收集的信息创建列表
         $builder   = new AdminListBuilder();
         $builder->setMetaTitle('列表标题') // 设置页面标题
         ->setSearch('搜索关键词名称','') //如果链接变量,直接写在第二个参数里
@@ -60,7 +63,7 @@ class Demo extends Admin
 
     public function demoAdd(){
         if(IS_POST){
-
+            // 省略
         } else {
             $info    =[];
             $info['status'] = 1;

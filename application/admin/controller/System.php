@@ -19,25 +19,19 @@ class System extends Base
 
     public function initialize(){
         parent::initialize();
-        $this->config_model = new Config();
+        $this->config_model = new Config(); // 配置表对应模型类
     }
 
     /**
-     * [index 空操作提醒]
-     */
-    public function index()
-    {
-        return $this->fetch();
-    }
-
-    /**
-     * [setConfig 配置界面读取]
+     * 配置界面读取
+     *
+     * @return mixed
      */
     public function setConfig() 
     {
 
     	$this->assign('meta_title','网站设置');
-        $id = input('id/d', 1);
+        $id = input('id/d', 1); // 配置分组
         $list = $this->config_model
         ->where(['group'=>$id, 'status'=>1])
         ->field('id,name,title,extra,value,remark,type,default,placeholder')
@@ -49,7 +43,9 @@ class System extends Base
     }
 
     /**
-     * [configList 配置列表]
+     * 配置列表
+     *
+     * @return mixed
      */
     public function configList()
     {
@@ -60,7 +56,9 @@ class System extends Base
     }
 
     /**
-     * [addconfig 添加配置]
+     * 添加配置
+     *
+     * @return mixed
      */
     public function addConfig()
     {
@@ -82,7 +80,10 @@ class System extends Base
     }
 
     /**
-     * [editconfig 修改配置]
+     * 修改配置
+     *
+     * @param $id
+     * @return mixed
      */
     public function editConfig($id)
     {
@@ -107,6 +108,11 @@ class System extends Base
         }
     }
 
+    /**
+     * 单个或批量删除记录
+     *
+     * @return \think\response\Json
+     */
     public function delConfig()
     {
         if (IS_POST) {
@@ -118,12 +124,14 @@ class System extends Base
                 return json( ['msg' => '删除失败！', 'code' => '0', 'url' => url('System/configList')] );
             }
         } else {
-            $this->fuck();
+            $this->fuck(); // TODO 找不到该函数
         }
     }
 
     /**
-     * [saveAllConfig 批量保存配置]
+     * 批量保存配置
+     *
+     * @param $config
      */
     public function saveAllConfig($config)
     {
@@ -131,8 +139,9 @@ class System extends Base
             foreach ($config as $name => $value) {
                 $this->config_model
                 ->where(['name'=>$name])
-                ->setField('value', $value);
+                ->setField('value', $value); // setField 方法返回影响数据的条数，没修改任何数据字段返回 0
                 if($name == 'store_money'){
+                    // TODO 函数不存在，批量保存需要优化
                     navReadSet('GiftsStoredValue',1);
                 }
             }

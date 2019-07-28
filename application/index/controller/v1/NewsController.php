@@ -1,9 +1,14 @@
 <?php
-namespace app\index\controller\api_v1;
+namespace app\index\controller\v1;
 
 
 use app\common\controller\Resful;
+use app\common\exception\ApiException;
 
+/**
+ * 新闻接口
+ * @package app\index\controller\v1
+ */
 class NewsController extends Resful
 {
     public function index()

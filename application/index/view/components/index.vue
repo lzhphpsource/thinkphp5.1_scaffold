@@ -3,7 +3,7 @@
         width: 100px;
         height: 100px;
         // resources/static下的文件可以直接使用绝对路径/static来访问
-        background: url('/static/images/2.png') no-repeat;
+        background: url('/vueStatic/images/2.png') no-repeat;
         -webkit-background-size: cover;
         background-size: cover;
     }
@@ -11,7 +11,7 @@
         width: 100px;
         height: 100px;
         // 直接引入相对资源也是可以的,这样的资源会经过webpack的打包处理
-        background: url('./assets/images/1.png') no-repeat;
+        background: url('../assets/images/1.png') no-repeat;
         -webkit-background-size: cover;
         background-size: cover;
     }
@@ -49,8 +49,10 @@
         onLoad () {
             this.$http.get('news')
                 .then(result => {
-                    console.log(result)
-                    this.rows = result.data.items
+                    if(result.data.ret == 200) {
+                        console.log(result)
+                        this.rows = result.data.data.items
+                    }
                 })
         }
 

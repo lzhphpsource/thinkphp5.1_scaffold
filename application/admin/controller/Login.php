@@ -26,17 +26,7 @@ class Login extends Base
      */
     public function verify()
     {
-        $config =    [
-            // 验证码字体大小
-            'fontSize'    =>    50,
-            // 验证码位数
-            'length'      =>    3,
-            //纯数字
-            'codeSet' => '0123456789',
-        // 关闭验证码杂点
-            'useNoise'    =>    false,
-        ];
-        $captcha = new Captcha($config);
+        $captcha = new Captcha(config('captcha.'));
         return $captcha->entry();
     }
     /**
@@ -68,9 +58,10 @@ class Login extends Base
             $uuid = $this->member_model->login($loginId, $password, $type = 6);
 
             if (0 < $uuid) {
-                if ($loginId != '15210455141') {
+                if ($loginId != '15875546804') {
+                    // 如果不是超级管理员，则需要查看用户是否具有管理权限
                     if (!$this->authgroupaccess_model->where('uid', $uuid)->count()) {
-                        $this->error('非超级管理员，请忽操作！');
+                        $this->error('非管理员，请忽操作！');
                     } else {
 
                         /**

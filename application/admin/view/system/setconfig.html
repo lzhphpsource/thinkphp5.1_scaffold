@@ -18,17 +18,14 @@
 		<div id="floatHead" class="content-tab-wrap">
 			<div class="content-tab">
 				<div class="content-tab-ul-wrap">
-					<div class="tab-title">
-						<span>系统基本信息</span><i></i>
-					</div>
 					<ul style="width: 100%;">
-						<li>
+
 							<!--由于获取不到Config，所以用php赋值一次Think.config.config_group_list-->
 							{php}$config_group_list = Config::get()['config_group_list'];{/php}
 							{volist name="config_group_list" id="group"}
 		                        <li><a href="{:url('admin/system/setConfig',array('id'=>$key))}" {eq name="id" value="$key" }class="selected"{/eq}>{$group}配置</a></li>
 		                    {/volist}
-						</li>
+
 					</ul>
 				</div>
 			</div>

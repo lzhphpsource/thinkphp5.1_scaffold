@@ -9,6 +9,9 @@ return array(
     'think\\migration\\' => array($vendorDir . '/topthink/think-migration/src'),
     'think\\composer\\' => array($vendorDir . '/topthink/think-installer/src'),
     'think\\captcha\\' => array($vendorDir . '/topthink/think-captcha/src'),
+    'think\\' => array($vendorDir . '/topthink/think-helper/src'),
     'app\\' => array($baseDir . '/application'),
+    'api\\doc\\' => array($vendorDir . '/liaozh/api-doc/src'),
     'Phinx\\' => array($vendorDir . '/topthink/think-migration/phinx/src/Phinx'),
+    'Api\\Doc\\' => array($vendorDir . '/weiwei/api-doc/src'),
 );

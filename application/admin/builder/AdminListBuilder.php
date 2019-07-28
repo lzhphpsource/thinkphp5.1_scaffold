@@ -1,38 +1,36 @@
 <?php
-// 公共Builder列表构建器控制器
-// +----------------------------------------------------------------------
-// | PHP version 5.6+
-// +----------------------------------------------------------------------
-// | Copyright (c) 2012-2014 http://www.bcahz.com, All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: White to black <973873838@qq.com>
-// +----------------------------------------------------------------------
-// | 原作者：心云间、凝听
-// +----------------------------------------------------------------------
+/**
+ * 公共Builder列表构建器控制器
+ *
+ * Created by PhpStorm.
+ * User: LZH
+ * Date: 2019/7/4
+ * Time: 15:10
+ */
 namespace app\admin\builder;
-use app\admin\builder\AdminBuilder;
 
 class AdminListBuilder extends AdminBuilder
 {
-    private $_meta_title;                  // 页面标题
-    private $_sub_title;                    // 页面子标题
-    private $_head_button_list    = array();   // 顶部工具栏按钮组
-    private $_foot_button_list    = array();     // 底部工具栏按钮组
-    private $_select              = array();             //添加下拉框
-    private $_search              = array();           // 搜索参数配置
-    private $_tab_nav             = array();           // 页面Tab导航
-    private $_table_column_list   = array();    //表格数据标题
+    private $_meta_title;                    // 页面标题
+    private $_sub_title;                     // 页面子标题
+    private $_head_button_list    = array(); // 顶部工具栏按钮组
+    private $_foot_button_list    = array(); // 底部工具栏按钮组
+    private $_select              = array(); // 添加下拉框
+    private $_search              = array(); // 搜索参数配置
+    private $_tab_nav             = array(); // 页面Tab导航
+    private $_table_column_list   = array(); // 表格数据标题
     private $_table_data_list     = array(); // 表格数据列表
-    private $_table_data_list_key = 'id';  // 表格数据列表主键字段名
-    private $_table_data_page;             // 表格数据分页
+    private $_table_data_list_key = 'id';    // 表格数据列表主键字段名
+    private $_table_data_page;               // 表格数据分页
     private $_right_button_list   = array(); // 表格右侧操作按钮组
-    private $_alter_data_list     = array();   // 表格数据列表重新修改的项目
-    private $_extra_html;                  // 额外功能代码
+    private $_alter_data_list     = array(); // 表格数据列表重新修改的项目
+    private $_extra_html;                    // 额外功能代码
     //private $_template;                    // 模版
 
     /**
      * 设置页面标题
-     * @param $title 标题文本
+     *
+     * @param $meta_title 标题文本
      * @return $this
      */
     public function setMetaTitle($meta_title)
@@ -40,9 +38,11 @@ class AdminListBuilder extends AdminBuilder
         $this->_meta_title = $meta_title;
         return $this;
     }
+
     /**
      * 设置页面子标题
-     * @param $title 标题文本
+     *
+     * @param $sub_title 标题文本
      * @return $this
      */
     public function setSubTitle($sub_title)
@@ -50,14 +50,16 @@ class AdminListBuilder extends AdminBuilder
         $this->_sub_title = $sub_title;
         return $this;
     }
+
     /**
      * 设置页面子标题
-     * @param $title 标题文本
+     *
+     * @param $tip 标题文本
      * @return $this
      */
-    public function setTip($tip) 
+    public function setTip($tip)
     {
-        $this->_sub_title = $sub_title;
+        $this->_sub_title = $tip;
         return $this;
     }
 
@@ -66,9 +68,9 @@ class AdminListBuilder extends AdminBuilder
      * 在使用预置的几种按钮时，比如我想改变新增按钮的名称
      * 那么只需要$builder->addTopButton('add', array('title' => '换个马甲'))
      * 如果想改变地址甚至新增一个属性用上面类似的定义方法
-     * @param string $type 按钮类型，主要有add/resume/forbid/recycle/restore/delete/self七几种取值
-     * @param array  $attr 按钮属性，一个定了标题/链接/CSS类名等的属性描述数组
-     * @return $this
+     * @param $type 按钮类型，主要有add/resume/forbid/recycle/restore/delete/self七几种取值
+     * @param null $attribute 按钮属性，一个定了标题/链接/CSS类名等的属性描述数组
+     * @return AdminListBuilder
      */
     public function addTopBtn($type, $attribute = null) 
     {
@@ -87,7 +89,14 @@ class AdminListBuilder extends AdminBuilder
         return $this->addBtn('foot',$type, $attribute);
     }
 
-    //添加按钮
+    /**
+     * 添加按钮
+     *
+     * @param string $position 按钮在列表中的位置
+     * @param $type 按钮类型
+     * @param null $attribute 按钮元素的属性
+     * @return $this
+     */
     public function addBtn($position='head',$type, $attribute = null)
     {
         switch ($type) {
@@ -117,7 +126,7 @@ class AdminListBuilder extends AdminBuilder
                 $my_attribute['title'] = '启用';
                 $my_attribute['target-form'] = 'ids';
                 $my_attribute['class'] = '';
-                $my_attribute['model'] = $attribute['model'] ? : CONTROLLER_NAME;;  // 要操作的数据模型
+                $my_attribute['model'] = $attribute['model'] ? : CONTROLLER_NAME;  // 要操作的数据模型
                 $my_attribute['href']  = url(
                     MODULE_NAME.'/'.CONTROLLER_NAME.'/setStatus',
                     array(
@@ -259,14 +268,11 @@ class AdminListBuilder extends AdminBuilder
     }
 
     /**
-     * 添加筛选功能
+     * 添加下拉筛选功能
+     *
      * @param string $title 标题
      * @param string $name 键名
-     * @param string $type 类型，默认文本
-     * @param string $des 描述
-     * @param        $attr  标签文本
-     * @param string $arrdb 择筛选项数据来源
-     * @param string $arrvalue 筛选数据（包含ID 和value的数组:array(array('id'=>1,'value'=>'系统'),array('id'=>2,'value'=>'项目'),array('id'=>3,'value'=>'机构'));）
+     * @param null $arrvalue 筛选数据（包含ID 和value的数组:array(array('id'=>1,'value'=>'系统'),array('id'=>2,'value'=>'项目'),array('id'=>3,'value'=>'机构'));）
      * @return $this
      */
     public function addSelect($title = '筛选', $name = 'key', $arrvalue = null)
@@ -276,8 +282,10 @@ class AdminListBuilder extends AdminBuilder
 
         return $this;
     }
+
     /**
      * 设置搜索参数
+     *
      * @param $title
      * @param $url
      * @return $this
@@ -293,6 +301,7 @@ class AdminListBuilder extends AdminBuilder
 
     /**
      * 设置Tab按钮列表
+     *
      * @param $tab_list Tab列表  array(
      *                               'title' => '标题',
      *                               'href' => 'http://www.xxx.cn'
@@ -310,7 +319,14 @@ class AdminListBuilder extends AdminBuilder
     }
 
     /**
-     * 加一个表格字段
+     * 添加一个表格字段
+     *
+     * @param $name 表中字段名称
+     * @param $title 列表中显示名称
+     * @param null $type 字段内容类型
+     * @param null $param
+     * @param null $extra_attr 额外属性
+     * @return $this
      */
     public function keyListItem($name, $title, $type = null, $param = null,$extra_attr=null)
     {
@@ -327,7 +343,10 @@ class AdminListBuilder extends AdminBuilder
     }
 
     /**
-     * 表格数据列表
+     * 设置表格数据列表
+     *
+     * @param $table_data_list
+     * @return $this
      */
     public function setListData($table_data_list)
     {
@@ -336,7 +355,10 @@ class AdminListBuilder extends AdminBuilder
     }
 
     /**
-     * 表格数据列表的主键名称
+     * 设置表格数据列表的主键名称
+     *
+     * @param $table_data_list_key
+     * @return $this
      */
     public function setListDataKey($table_data_list_key)
     {
@@ -351,8 +373,9 @@ class AdminListBuilder extends AdminBuilder
      * 如果想改变地址甚至新增一个属性用上面类似的定义方法
      * 因为添加右侧按钮的时候你并没有办法知道数据ID，于是我们采用__data_id__作为约定的标记
      * __data_id__会在display方法里自动替换成数据的真实ID
-     * @param string $type 按钮类型，edit/forbid/recycle/restore/delete/self六种取值
-     * @param array  $attr 按钮属性，一个定了标题/链接/CSS类名等的属性描述数组
+     *
+     * @param $type 按钮类型，edit/forbid/recycle/restore/delete/self六种取值
+     * @param null $attribute 按钮属性，一个定了标题/链接/CSS类名等的属性描述数组
      * @return $this
      */
     public function addRightButton($type, $attribute = null)
@@ -567,6 +590,7 @@ class AdminListBuilder extends AdminBuilder
 
     /**
      * 设置分页
+     *
      * @param $page
      * @return $this
      */
@@ -580,7 +604,9 @@ class AdminListBuilder extends AdminBuilder
      * 修改列表数据
      * 有时候列表数据需要在最终输出前做一次小的修改
      * 比如管理员列表ID为1的超级管理员右侧编辑按钮不显示删除
-     * @param $page
+     *
+     * @param $condition
+     * @param $alter_data
      * @return $this
      */
     public function alterListData($condition, $alter_data)
@@ -594,6 +620,7 @@ class AdminListBuilder extends AdminBuilder
 
     /**
      * 设置额外功能代码
+     *
      * @param $extra_html 额外功能代码
      * @return $this
      */
@@ -604,7 +631,13 @@ class AdminListBuilder extends AdminBuilder
     }
 
     /**
-     * 显示页面
+     * 渲染显示页面
+     *
+     * @param string $templateFile 模板文件
+     * @param string $vars
+     * @param string $replace
+     * @param string $config
+     * @return mixed|void
      */
     public function fetch($templateFile='',$vars ='', $replace ='', $config = '')
     {

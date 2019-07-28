@@ -15,10 +15,14 @@ use app\common\controller\Base;
 
 class Admin extends Base
 {
-  /**
-     * [setStatus 设置状态属性]
-     * 设置一条或者多条数据的状态
-     * @param $script 严格模式要求处理的纪录的uid等于当前登陆用户UID
+
+    /**
+     * 设置状态属性，设置一条或者多条数据的状态
+     *
+     * @param $model
+     * @param bool $script 严格模式要求处理的纪录的uid等于当前登陆用户UID
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function setStatus($model = CONTROLLER_NAME, $script = false) {
         $ids    =$this->param['ids'];
@@ -106,16 +110,19 @@ class Admin extends Base
 
     /**
      * 对数据表中的单行或多行记录执行修改 GET参数id为数字或逗号分隔的数字
-     * @param string $model 模型名称,供M函数使用的参数
-     * @param array  $data  修改的数据
-     * @param array  $map   查询时的where()方法的参数
-     * @param array  $msg   执行正确和错误的消息
+     *
+     * @param $model 模型名称,供M函数使用的参数
+     * @param $data  修改的数据
+     * @param $map   查询时的where()方法的参数
+     * @param $msg   执行正确和错误的消息
      *                       array(
      *                           'success' => '',
      *                           'error'   => '',
      *                           'url'     => '',   // url为跳转页面
      *                           'ajax'    => false //是否ajax(数字则为倒数计时)
      *                       )
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     final protected function editRow($model, $data, $map, $msg) {
         $id = array_unique((array)input('id',0));
@@ -170,7 +177,8 @@ class Admin extends Base
      }
 
     /**
-     * 删除
+     * 删除目录
+     *
      * @param  [type] $dirname [description]
      * @return [type]          [description]
      */

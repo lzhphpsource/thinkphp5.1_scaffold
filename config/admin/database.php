@@ -7,5 +7,5 @@
 
 return [
     // 数据库表前缀
-    'prefix'          => 'hd_',
+    'prefix'          => Env::get('DB_PREFIX', 'hd_'),
 ];

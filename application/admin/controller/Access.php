@@ -17,6 +17,7 @@ use app\admin\model\MemberGroup;
 use org\util\Category;
 use app\admin\validate\AuthGroup as AuthGroupValidate;
 use think\db;
+
 class Access extends Admin
 {
 
@@ -31,13 +32,10 @@ class Access extends Admin
         $this->member_group_model      = new MemberGroup();
     }
 
-    /**
-     * [index 空操作提醒]
-     */
-    public function index()
-    {
-        return $this->fetch();
-    }
+//    public function index()
+//    {
+//        return $this->fetch();
+//    }
 
     /**
      * [nodeList 节点管理]
@@ -318,8 +316,11 @@ class Access extends Admin
         }
     }
 
+
     /**
-     * [authList 管理员列表]
+     * 管理员列表
+     *
+     * @return mixed
      */
     public function authList()
     {   
@@ -333,13 +334,16 @@ class Access extends Admin
         }
 
         //$SuperAdminData = $this->member_model->where($condition)->paginate(15,false,['query' => request()->param()]);
+        // TODO 需要优化，这里以来表前缀名称
         $SuperAdminData = $this->member_model->where('id in (select uid from hd_auth_group_access)')->order('hd_member.register_time desc , update_time desc')->paginate(8,false,['query' => request()->param()]);
         $this->assign('list',$SuperAdminData);
         return $this->fetch();
     }
 
     /**
-     * [delUser 批量删除/单删除]
+     * 批量或单个删除管理员
+     *
+     * @return \think\response\Json
      */
     public function delUser()
     {
